@@ -1,0 +1,3194 @@
+    :root {
+        --bar-h: 32px;
+        --border: #000;
+        --bg: #fff;
+        --fg: #000;
+        --hover-dim: #777;
+        --text-size: 26px;
+        --pad-x: 1px;
+        --tracking: .02em;
+        --weight: 300;
+
+        /* Cursor ejes */
+        --cursor-x: 0px;
+        --cursor-y: 0px;
+        --cursor-thick: 1px;
+        --cursor-color: #ff0000;
+
+        /* About/Projects topbar */
+        --about-topbar-bg: #6b6b6b;
+        --about-text-on-topbar: #fff;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        background: #fff;
+        color: var(--fg);
+        font-family: "Helvetica Neue", Helvetica, Arial, system-ui, -apple-system, sans-serif;
+        font-weight: var(--weight);
+        letter-spacing: var(--tracking);
+        overflow: hidden;
+    }
+
+    /* ====== Barra superior ====== */
+    .topbar {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: var(--bar-h);
+        background: var(--bg);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        z-index: 20;
+    }
+
+    .nav {
+        position: relative;
+        height: 100%;
+    }
+
+    .nav a {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: var(--fg);
+        font-size: var(--text-size);
+        line-height: 1;
+        padding: 0 6px;
+        cursor: pointer;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .nav__left {
+        left: var(--pad-x);
+    }
+
+    .nav__right {
+        right: var(--pad-x);
+    }
+
+    .nav__center {
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+    }
+
+    /* Hover SIEMPRE activo (también con About/Projects abiertos) */
+    .topbar:hover {
+        background: #000;
+    }
+
+    .topbar:hover .nav a {
+        color: #fff;
+    }
+
+    .topbar:hover .nav a:not(:hover) {
+        color: var(--hover-dim);
+    }
+
+    /* Estado About/Projects */
+    body.about-open .topbar,
+    body.projects-open .topbar {
+        background: var(--about-topbar-bg);
+    }
+
+    body.about-open .topbar .nav a,
+    body.projects-open .topbar .nav a {
+        color: var(--about-text-on-topbar);
+    }
+
+    /* ====== Barras secundarias de About ====== */
+    .about-bars {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: var(--bar-h);
+        display: none;
+        z-index: 21;
+    }
+
+    body.about-open .about-bars {
+        display: block;
+    }
+
+    .about-bar {
+        height: var(--bar-h);
+        background: #000;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        position: relative;
+        color: #fff;
+    }
+
+    .about-bar+.about-bar {
+        border-top: 0;
+    }
+
+    /* evita doble línea */
+
+    .btn-close {
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(var(--bar-h) - 6px);
+        height: calc(var(--bar-h) - 6px);
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #000;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+    }
+
+    .btn-close svg {
+        width: 72%;
+        height: 72%;
+        display: block;
+    }
+
+    .btn-close line {
+        stroke: #ff0000;
+        stroke-width: 2.5;
+        stroke-linecap: square;
+    }
+
+    .btn-close:hover {
+        background: #000;
+        border-color: #fff;
+    }
+
+    .about-links {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 8px;
+    }
+
+    .about-links a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 20px;
+        line-height: 1;
+        transition: color .15s ease;
+    }
+
+    .about-bar:hover .about-links a {
+        color: #9a9a9a;
+    }
+
+    .about-bar .about-links a:hover {
+        color: #fff;
+    }
+
+    /* ====== Panel About ====== */
+    .about-panel {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: calc(var(--bar-h) * 3);
+        bottom: 0;
+        background: #fff;
+        border-top: 1px solid #fff;
+        z-index: 22;
+        display: none;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px 14px 16px 14px;
+    }
+
+    body.about-open .about-panel {
+        display: block;
+    }
+
+    .about-panel .about-content {
+        max-width: 880px;
+        margin: 12px auto 40px;
+        padding: 0 14px;
+    }
+
+    .about-panel .about-content h2 {
+        font-size: 18px;
+        line-height: 1;
+        margin: 18px 0 8px;
+        text-transform: uppercase;
+        letter-spacing: .04em;
+        font-weight: 550;
+    }
+
+    .about-panel .about-content p {
+        font-size: 16px;
+        line-height: 1.4;
+        margin: 6px 0 12px;
+    }
+
+    .about-panel .about-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 4px 0 16px;
+    }
+
+    .about-panel .about-content li {
+        font-size: 16px;
+        line-height: 1.4;
+        margin: 2px 0;
+    }
+
+    .about-panel .about-content a {
+        color: #000;
+        text-decoration: underline;
+        text-underline-offset: 2px;
+    }
+
+    .about-panel .about-section {
+        padding-top: 8px;
+        border-top: 0;
+    }
+
+    .about-panel .about-section:first-child {
+        border-top: 0;
+        padding-top: 0;
+    }
+
+    /* PRESS link rojo */
+    .press-link {
+        color: #ff0000;
+        text-decoration: none;
+        font-weight: 400;
+    }
+
+    .press-link:hover {
+        text-decoration: underline;
+    }
+
+    /* ====== PROJECTS overlay ====== */
+    .projects {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: var(--bar-h);
+        bottom: 0;
+        display: none;
+        z-index: 21;
+        background: transparent;
+    }
+
+    body.projects-open .projects {
+        display: block;
+    }
+
+    .projects-row {
+        height: var(--bar-h);
+        background: rgba(255, 255, 255, 0.7);
+        color: #000;
+        border-top: 1px solid #000;
+        border-bottom: 1px solid #000;
+        display: flex;
+        align-items: center;
+        position: relative;
+        font-size: var(--text-size);
+        line-height: 1;
+    }
+
+    .projects-row+.projects-row {
+        border-top: 0;
+    }
+
+    /* Primera (X) y separadora: siempre blancas */
+    .projects-row:first-child,
+    .projects-row.separator {
+        background: #fff;
+    }
+
+    .projects-row.separator:hover {
+        background: #fff;
+        color: #000;
+    }
+
+    .projects-row:hover {
+        background: #000;
+        color: #fff;
+    }
+
+    .projects-row:first-child:hover {
+        background: #fff;
+        color: #000;
+    }
+
+    .projects-row .cell {
+        flex: 1;
+        padding: 0 6px;
+    }
+
+    .projects-row .cell.right {
+        text-align: right;
+    }
+
+    .btn-close-projects {
+        position: absolute;
+        right: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(var(--bar-h) - 6px);
+        height: calc(var(--bar-h) - 6px);
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #000;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+    }
+
+    .btn-close-projects svg {
+        width: 72%;
+        height: 72%;
+        display: block;
+    }
+
+    .btn-close-projects line {
+        stroke: #ff0000;
+        stroke-width: 2.5;
+        stroke-linecap: square;
+    }
+
+    .btn-close-projects:hover {
+        background: #000;
+        border-color: #fff;
+    }
+
+    /* ====== Grilla ====== */
+    .stage {
+        position: fixed;
+        top: var(--bar-h);
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #fff;
+        z-index: 10;
+    }
+
+    canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        touch-action: none;
+    }
+
+    .hint {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+        font-size: 12px;
+        color: #777;
+        background: transparent;
+        border: none;
+        padding: 0;
+        pointer-events: none;
+        z-index: 11;
+    }
+
+    .note {
+        position: fixed;
+        left: 50%;
+        bottom: 8px;
+        transform: translateX(-50%);
+        font-size: 12px;
+        color: #777;
+        background: transparent;
+        border: none;
+        padding: 0;
+        z-index: 15;
+        pointer-events: none;
+    }
+
+    /* Cursor ejes rojos */
+    @media (hover: hover) and (pointer: fine) {
+        body {
+            cursor: none;
+        }
+
+        .cursor {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        .cursor-h {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: var(--cursor-thick);
+            background: var(--cursor-color);
+            transform: translateY(var(--cursor-y));
+            will-change: transform;
+        }
+
+        .cursor-v {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: var(--cursor-thick);
+            background: var(--cursor-color);
+            transform: translateX(var(--cursor-x));
+            will-change: transform;
+        }
+    }
+
+    /* Logo centrado del Home */
+    .home-logo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 250px;
+        height: 250px;
+        object-fit: contain;
+        image-rendering: auto;
+        z-index: 12;
+        cursor: pointer;
+    }
+
+    .home-logo:hover {
+        content: url("assets/Icons/logo-home2.png");
+    }
+
+    body.projects-open .home-logo {
+        display: none;
+    }
+
+    /* ocultar si Projects abierto */
+
+    /* Modo invertido global */
+    body.invert {
+        filter: invert(1);
+        background: #000;
+    }
+
+    /* EXCEPCIÓN: no invertir las IMÁGENES dentro de los project details */
+    body.invert .project-detail img {
+        /* doble invert = vuelve a los colores originales */
+        filter: invert(1);
+    }
+
+    /* (opcional) si más adelante metés video/canvas y tampoco querés invertirlos: */
+    /* body.invert .project-detail img,
+body.invert .project-detail video,
+body.invert .project-detail canvas {
+  filter: invert(1);
+} */
+
+    /* === PREVIEW de proyectos (thumbnail centrado) === */
+    .preview {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        height: 300px;
+        border: 1px solid #000;
+        background: #fff;
+        z-index: 200;
+        display: none;
+    }
+
+    .preview__img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .preview__header {
+        position: absolute;
+        left: -1px;
+        right: -1px;
+        top: -1px;
+        height: calc(var(--bar-h) * 0.6667);
+        background: #000;
+        border: 1px solid #fff;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 6px;
+        font-size: 14px;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+    }
+
+    /* ====== PROJECT DETAIL (vista individual) ====== */
+    .project-detail {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: var(--bar-h);
+        /* debajo de la topbar */
+        bottom: 0;
+        background: #fff;
+        z-index: 23;
+        /* por encima de About(22) y Projects(21) */
+        display: none;
+        /* se muestra al abrir un proyecto */
+    }
+
+    /* Barra 1: nombre + X (misma altura que la topbar) */
+    .project-bar {
+        height: var(--bar-h);
+        background: #000;
+        color: #fff;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 0 38px 0 8px;
+        /* ahora dejamos espacio a la DERECHA */
+        font-size: var(--text-size);
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+    }
+
+    /* Botón X a la izquierda (blanco con X roja) */
+    .btn-close-project {
+        position: absolute;
+        right: 6px;
+        left: auto;
+        top: 50%;
+        transform: translateY(-50%);
+        width: calc(var(--bar-h) - 6px);
+        height: calc(var(--bar-h) - 6px);
+        border-radius: 50%;
+        background: #fff;
+        border: 1px solid #000;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+    }
+
+    .btn-close-project svg {
+        width: 72%;
+        height: 72%;
+        display: block;
+    }
+
+    .btn-close-project line {
+        stroke: #ff0000;
+        stroke-width: 2.5;
+        stroke-linecap: square;
+    }
+
+    .btn-close-project:hover {
+        background: #000;
+        border-color: #fff;
+    }
+
+    /* Barra 2: tipo(año) a la izq, materiales a la der (misma altura) */
+    .project-subbar {
+        height: var(--bar-h);
+        background: #000;
+        color: #fff;
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        /* izquierda | centro | derecha */
+        align-items: center;
+        padding: 0 8px;
+        font-size: 18px;
+        line-height: 1;
+        text-transform: none;
+    }
+
+    .project-subbar .project-type {
+        justify-self: start;
+    }
+
+    .project-subbar .project-dimensions {
+        justify-self: center;
+
+    }
+
+    .project-subbar .project-materials {
+        justify-self: end;
+    }
+
+    /* Lienzo de contenido (blanco, scrolleable si hace falta) */
+    .project-canvas {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(var(--bar-h) * 2);
+        bottom: 0;
+        background: #fff;
+        overflow: auto;
+        padding: 12px 12px 32px;
+    }
+
+    /* Para detalles con una sola barra (Video / Visualization / Research Lab) */
+    .project-detail.onebar .project-canvas {
+        top: var(--bar-h);
+    }
+
+    /* Ocultar hint cuando Projects o un Project Detail están abiertos */
+    body.projects-open .hint,
+    body.project-open .hint {
+        display: none;
+    }
+
+
+
+    /* --- PHORETIC: refinamientos layout --- */
+    #project-phoretic .project-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* texto | foto | foto */
+        gap: 12px;
+        align-items: start;
+    }
+
+    /* Evita que el caption empuje raramente la imagen */
+    #project-phoretic .project-fig {
+        margin: 0;
+        display: grid;
+        grid-template-rows: auto auto;
+        /* img + caption */
+        align-content: start;
+    }
+
+    /* Imágenes: consistentes y sin “achicarse raro” */
+    #project-phoretic .project-fig img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        /* Si te gusta una altura consistente, activa el aspect-ratio: */
+        /* aspect-ratio: 3 / 4; */
+    }
+
+    #project-phoretic .project-fig figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    /* Texto justificado pero sin ríos enormes en móviles */
+    #project-phoretic .project-text {
+        font-size: 18px;
+        line-height: 1.35;
+        text-align: justify;
+        text-align-last: left;
+        hyphens: auto;
+    }
+
+    /* --- Breakpoints: 3→2→1 columnas para que no “salten” --- */
+    @media (max-width: 1200px) {
+        #project-phoretic .project-layout {
+            grid-template-columns: 1.2fr 1fr;
+            /* texto + una foto */
+        }
+
+        /* que la segunda foto baje debajo como fila siguiente */
+        #project-phoretic .project-fig:nth-of-type(2) {
+            order: 2;
+        }
+
+        #project-phoretic .project-fig:nth-of-type(3) {
+            order: 3;
+        }
+    }
+
+    @media (max-width: 720px) {
+        #project-phoretic .project-layout {
+            grid-template-columns: 1fr;
+            /* una sola columna */
+        }
+
+        #project-phoretic .project-text {
+            text-align: left;
+        }
+
+        /* lectura más natural */
+    }
+
+    .project-inquiry {
+        margin: 40px auto 0;
+        /* espacio arriba, centrado horizontal */
+        padding: 20px 10px;
+        max-width: 720px;
+        /* opcional, para que no quede un renglón larguísimo */
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: center;
+        /* centrado */
+        color: #000;
+        font-style: italic;
+    }
+
+    .project-inquiry a {
+        color: #ff0000;
+        text-decoration: none;
+    }
+
+    .project-inquiry a:hover {
+        text-decoration: underline;
+    }
+
+    /* === VISUALIZATION: imágenes horizontales full-width === */
+    #project-visualization .gallery {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        /* espacio entre imágenes */
+        padding: 12px;
+        /* usa el padding del canvas */
+    }
+
+    #project-visualization .gallery-fig {
+        margin: 0;
+    }
+
+    #project-visualization .gallery-fig img {
+        width: 100%;
+        height: auto;
+        /* mantiene proporción */
+        display: block;
+        object-fit: cover;
+        /* por si alguna viene un poco más alta/baja */
+    }
+
+    #project-visualization .gallery-fig figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+        /* como en Phoretic */
+    }
+
+    /* (Opcional) modo FULL-BLEED real, borde a borde de la ventana */
+    #project-visualization .gallery.fullbleed {
+        padding: 0;
+        /* sin padding */
+    }
+
+    #project-visualization .gallery.fullbleed .gallery-fig {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        /* extiende a los bordes */
+    }
+
+    #project-visualization .gallery.fullbleed .gallery-fig figcaption {
+        padding: 0 12px;
+        /* un poco de aire para el texto */
+    }
+
+    /* === STATES OF TENSION: 3 tercios (texto | texto | video) === */
+    #project-states-of-tension .project-canvas {
+        padding: 12px;
+    }
+
+    #project-states-of-tension .project-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* 1º tercio | 2º tercio | video */
+        gap: 12px;
+        align-items: start;
+    }
+
+    /* columnas de texto */
+    #project-states-of-tension .project-text-col {
+        font-size: 18px;
+        line-height: 1.35;
+        text-align: justify;
+        text-align-last: left;
+        hyphens: auto;
+    }
+
+    /* contenedor del video (tercer tercio) */
+    #project-states-of-tension .project-media {
+        display: grid;
+        gap: 6px;
+    }
+
+
+
+    /* video vertical sin recorte */
+    #project-states-of-tension .video-wrap.portrait {
+        aspect-ratio: 9 / 16;
+        /* mantiene el 1080x1920 visible */
+    }
+
+    #project-states-of-tension .video-wrap.portrait video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* se ve entero (pillarbox si hace falta) */
+        display: block;
+    }
+
+    /* caption del video */
+    #project-states-of-tension .media-caption {
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    /* responsive: 3→1 columnas en móvil */
+    @media (max-width: 900px) {
+        #project-states-of-tension .project-layout {
+            grid-template-columns: 1fr;
+        }
+
+        #project-states-of-tension .project-text-col {
+            text-align: left;
+        }
+    }
+
+    /* --- Portrait override: muestra el video vertical completo --- */
+    #project-states-of-tension .video-wrap.portrait {
+        aspect-ratio: 9 / 16;
+        /* reemplaza el 16/9 del caso general */
+        background: #000;
+        border: 0px solid #000;
+        overflow: hidden;
+    }
+
+    #project-states-of-tension .video-wrap.portrait video {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* clave: NO recorta, se ve entero */
+        display: block;
+    }
+
+    /* STATES OF TENSION — figura a 3 tercios */
+    /* Que el grid maneje el espaciado vertical (filas) */
+    #project-states-of-tension .project-layout {
+        row-gap: 8px;
+        /* antes 12px si lo tenías; bajamos a 8px */
+    }
+
+    /* Full-span SIN margen adicional: que pegue al grid */
+    #project-states-of-tension figure.fullspan {
+        margin: 0;
+        /* quita el margin-top del figure */
+        grid-column: 1 / -1;
+    }
+
+    /* Evitar “doble espacio” de lo que está arriba */
+    #project-states-of-tension .project-text-col>*:last-child {
+        margin-bottom: 0;
+    }
+
+    #project-states-of-tension .project-media .media-caption {
+        margin-bottom: 0;
+        /* por si el caption del video tenía margen */
+    }
+
+    /* Imagen y caption */
+    #project-states-of-tension .fullspan img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        /* usa contain si no querés recorte */
+    }
+
+    #project-states-of-tension .fullspan figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    #project-states-of-tension .media-caption {
+        margin: 4px 0 0;
+    }
+
+    /* top chiquito, sin bottom extra */
+
+    /* Imagen full-span */
+    #project-states-of-tension figure.fullspan img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    /* SoT: 3 imágenes, una por columna */
+    #project-states-of-tension figure.third {
+        margin: 0;
+        /* sin márgenes extra, que mande el grid */
+    }
+
+    #project-states-of-tension figure.third img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        /* cambia a 'contain' si no querés recorte */
+    }
+
+    /* caption igual al resto */
+    #project-states-of-tension figure.third figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    /* responsive: en mobile se apilan */
+    @media (max-width: 900px) {
+        #project-states-of-tension figure.third {
+            grid-column: 1 / -1;
+            /* cada una ocupa todo el ancho en 1 col */
+        }
+    }
+
+
+
+    /* Si querés que el video NO se invierta en modo invert */
+    body.invert #project-states-of-tension video {
+        filter: invert(1);
+    }
+
+    /* === 000: texto (1/3) + imagen (2/3) === */
+    #project-000 .project-canvas {
+        padding: 12px;
+    }
+
+    #project-000 .project-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* texto | imagen | imagen */
+        gap: 12px;
+        align-items: start;
+    }
+
+    /* Texto */
+    #project-000 .project-text {
+        font-size: 18px;
+        line-height: 1.35;
+        text-align: justify;
+        text-align-last: left;
+        hyphens: auto;
+    }
+
+    /* Imagen 2/3 */
+    #project-000 .project-fig {
+        margin: 0;
+        display: grid;
+        grid-template-rows: auto auto;
+        /* img + caption */
+        align-content: start;
+    }
+
+    #project-000 .project-fig.two-span {
+        grid-column: 2 / span 2;
+    }
+
+    #project-000 .project-fig img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    #project-000 .project-fig figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    /* Responsive: en mobile todo a 1 columna */
+    @media (max-width:900px) {
+        #project-000 .project-layout {
+            grid-template-columns: 1fr;
+        }
+
+        #project-000 .project-fig.two-span {
+            grid-column: 1 / -1;
+        }
+
+        #project-000 .project-text {
+            text-align: left;
+        }
+    }
+
+    /* 000 — video (1/3) + imagen (2/3) */
+    #project-000 .project-media {
+        margin: 0;
+        display: grid;
+        grid-template-rows: auto auto;
+        /* video + caption */
+        align-content: start;
+        gap: 6px;
+    }
+
+    /* 000 — video vertical 9:16, sin barras negras */
+    /*#project-000 .video-wrap.portrait{
+  aspect-ratio: 9 / 16;      /* relación real del clip vertical */
+    overflow: hidden;
+    background: transparent;
+    /* nada de fondo negro */
+    border: 0;
+    }
+
+    /*#project-000 .video-wrap.portrait video{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;       /* se ve TODO el cuadro */
+    object-position: center;
+    background: transparent;
+    /* si el browser pinta el “hueco”, que sea transparente/blanco */
+    }
+
+    #project-000 .project-media .media-caption,
+    #project-000 .project-fig figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    /* Imagen que ocupa 2 tercios (ya usamos .two-span antes) */
+    #project-000 .project-fig.two-span {
+        grid-column: 2 / span 2;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        #project-000 .project-fig.two-span {
+            grid-column: 1 / -1;
+        }
+    }
+
+    /* 000 — Fila 1/3 (video) | 2/3 (foto) con alturas iguales y crop suave */
+    #project-000 .row-1-2 {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        /* 1/3 | 2/3 */
+        gap: 12px;
+        align-items: stretch;
+        /* mismas alturas */
+    }
+
+    :root {
+        --row-h-000: min(75vh, 900px);
+    }
+
+    /* probá 72–80vh o 820–960px */
+
+    /* Celdas con recorte suave y misma altura */
+    #project-000 .row-1-2 .cell {
+        height: var(--row-h-000);
+        position: relative;
+        overflow: hidden;
+        /* 🔸 evita barras; recorta contenido */
+    }
+
+    /* Foto y video llenan la celda (aceptando crop) */
+    #project-000 .row-1-2 .cell img,
+    #project-000 .row-1-2 .cell video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* 🔸 llena y cropea si hace falta */
+        object-position: center;
+        display: block;
+        background: transparent;
+    }
+
+    /* Caption flotado fuera del alto fijo */
+    #project-000 .row-1-2 figure {
+        margin: 0;
+    }
+
+    #project-000 .row-1-2 figcaption {
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+    }
+
+    /* Mobile: sin alto fijo para evitar recortes fuertes */
+    @media (max-width: 900px) {
+        :root {
+            --row-h-000: 48vh;
+        }
+
+        #project-000 .row-1-2 {
+            grid-template-columns: 1fr;
+        }
+
+        #project-000 .row-1-2 .cell {
+            height: auto;
+            overflow: visible;
+        }
+
+        #project-000 .row-1-2 .cell img,
+        #project-000 .row-1-2 .cell video {
+            position: static;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        #project-000 .row-1-2 figcaption {
+            position: static;
+            margin-top: 4px;
+        }
+    }
+
+    /* 000 — imagen full-width debajo de la fila video|foto */
+    #project-000 .project-fig.fullspan-000 {
+        margin: 12px 0 0 0;
+        /* mismo ritmo que el grid */
+    }
+
+    #project-000 .project-fig.fullspan-000 img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        /* cambia a contain si no querés nada de crop */
+    }
+
+    /* 000 — Fila 1/2 | 1/2 */
+    #project-000 .row-1-1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* 50/50 */
+        gap: 12px;
+        align-items: stretch;
+        /* mismas alturas */
+        margin-top: 12px;
+    }
+
+    /* usa la misma variable de alto que la fila 1/3–2/3 */
+    #project-000 .row-1-1 .cell {
+        height: var(--row-h-000);
+        /* p.ej. 75vh si ya la subiste */
+        position: relative;
+        overflow: hidden;
+        /* recorte suave */
+    }
+
+    #project-000 .row-1-1 .cell img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* llena y cropea lo justo */
+        object-position: center;
+        display: block;
+    }
+
+    #project-000 .row-1-1 figure {
+        margin: 0;
+    }
+
+    #project-000 .row-1-1 figcaption {
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+    }
+
+    /* Responsive: apilar y sin alto fijo */
+    @media (max-width: 900px) {
+        #project-000 .row-1-1 {
+            grid-template-columns: 1fr;
+        }
+
+        #project-000 .row-1-1 .cell {
+            height: auto;
+            overflow: visible;
+        }
+
+        #project-000 .row-1-1 .cell img {
+            position: static;
+            height: auto;
+            object-fit: contain;
+        }
+
+        #project-000 .row-1-1 figcaption {
+            position: static;
+            margin-top: 4px;
+        }
+    }
+
+    /* --- FIX captions que no se ven en 000 --- */
+
+    /* Las celdas no deben recortar el caption */
+    #project-000 .row-1-2 .cell,
+    #project-000 .row-1-1 .cell {
+        overflow: visible;
+    }
+
+    /* Hacemos que cada figure sea una grilla: media arriba (1fr) + caption abajo (auto) */
+    #project-000 .row-1-2 figure,
+    #project-000 .row-1-1 figure {
+        display: grid;
+        grid-template-rows: 1fr auto;
+        margin: 0;
+        height: var(--row-h-000);
+        /* mantiene la altura pareja que ya venías usando */
+    }
+
+    /* El media (img/video) ocupa la fila 1 y se recorta suave */
+    #project-000 .row-1-2 figure>img,
+    #project-000 .row-1-2 figure>video,
+    #project-000 .row-1-1 figure>img,
+    #project-000 .row-1-1 figure>video {
+        grid-row: 1 / 2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        display: block;
+    }
+
+    /* El caption va en la fila 2, en flujo normal (¡no absoluto!) */
+    #project-000 .row-1-2 figcaption,
+    #project-000 .row-1-1 figcaption {
+        grid-row: 2 / 3;
+        position: static !important;
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+    }
+
+    /* Mobile: sin alto fijo para evitar recortes fuertes */
+    @media (max-width: 900px) {
+
+        #project-000 .row-1-2 figure,
+        #project-000 .row-1-1 figure {
+            height: auto;
+        }
+
+        #project-000 .row-1-2 figure>img,
+        #project-000 .row-1-2 figure>video,
+        #project-000 .row-1-1 figure>img,
+        #project-000 .row-1-1 figure>video {
+            height: auto;
+            object-fit: contain;
+        }
+    }
+
+    /* 000 — achicar espacio vertical entre bloques y captions */
+    #project-000 .row-1-2 {
+        gap: 12px;
+        margin-bottom: 2px;
+    }
+
+    /* antes sin margin; agrega solo 6px */
+    #project-000 .row-1-1 {
+        gap: 12px;
+        margin-top: 2px;
+    }
+
+    /* si usás la fila 1/1 (mitad–mitad) */
+
+    /* caption más pegado al media */
+    #project-000 .row-1-2 figcaption,
+    #project-000 .row-1-1 figcaption {
+        margin-top: 2px;
+        /* antes 4px */
+        line-height: 1.2;
+        /* un poco más compacto */
+    }
+
+    /* espacio entre secciones dentro del canvas (fila→full, etc.) */
+    #project-000 .project-canvas>*+* {
+        margin-top: 2px;
+        /* reduce separación por defecto entre bloques */
+    }
+
+    /* si todavía lo querés más cerrado, bajá a 4px los dos valores de arriba */
+
+    /* 000 — Fila 1/2 | 1/2 (mitad y mitad) */
+    #project-000 .row-1-1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: stretch;
+    }
+
+    #project-000 .row-1-1 .cell {
+        height: var(--row-h-000);
+        /* usa la misma altura que la otra fila */
+        position: relative;
+        overflow: hidden;
+    }
+
+    #project-000 .row-1-1 .cell img,
+    #project-000 .row-1-1 .cell video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* llena y cropea suave */
+        object-position: center;
+        display: block;
+    }
+
+    #project-000 .row-1-1 figure {
+        margin: 0;
+    }
+
+    #project-000 .row-1-1 figcaption {
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+    }
+
+    /* Mobile */
+    @media (max-width:900px) {
+        #project-000 .row-1-1 {
+            grid-template-columns: 1fr;
+        }
+
+        #project-000 .row-1-1 .cell {
+            height: auto;
+            overflow: visible;
+        }
+
+        #project-000 .row-1-1 .cell img,
+        #project-000 .row-1-1 .cell video {
+            position: static;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        #project-000 .row-1-1 figcaption {
+            position: static;
+            margin-top: 4px;
+        }
+    }
+
+    /* 000 — imagen full width */
+    #project-000 figure.fullspan {
+        margin: 12px 0 0;
+        /* mismo aire que el resto */
+    }
+
+    #project-000 figure.fullspan img {
+        width: 100%;
+        height: auto;
+        /* sin deformar */
+        display: block;
+        object-fit: cover;
+        /* cambia a contain si no querés crop */
+    }
+
+    #project-000 figure.fullspan figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    /* fila 50/50 */
+    #project-000 .row-1-1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        align-items: stretch;
+        margin-top: 12px;
+    }
+
+    /* el video en 50/50 se comporta igual que la imagen */
+    #project-000 .row-1-1 .cell {
+        height: var(--row-h-000);
+        position: relative;
+        overflow: hidden;
+    }
+
+    #project-000 .row-1-1 .cell img,
+    #project-000 .row-1-1 .cell video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* cambia a 'contain' si NO querés crop */
+        object-position: center;
+        display: block;
+    }
+
+    #project-000 .row-1-1 figure {
+        margin: 0;
+    }
+
+    #project-000 .row-1-1 figcaption {
+        position: absolute;
+        left: 0;
+        bottom: -18px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+    }
+
+    /* mobile: apilar y sin alto fijo */
+    @media (max-width:900px) {
+        #project-000 .row-1-1 {
+            grid-template-columns: 1fr;
+        }
+
+        #project-000 .row-1-1 .cell {
+            height: auto;
+            overflow: visible;
+        }
+
+        #project-000 .row-1-1 .cell img,
+        #project-000 .row-1-1 .cell video {
+            position: static;
+            height: auto;
+            object-fit: contain;
+        }
+
+        #project-000 .row-1-1 figcaption {
+            position: static;
+            margin-top: 4px;
+        }
+    }
+
+    /* No invertir los VIDEOS dentro de los proyectos (incluye 000.mp4) */
+    body.invert .project-detail video {
+        filter: invert(1);
+        /* doble invert = colores normales */
+    }
+
+    /* (opcional) también canvas si usás alguno */
+    body.invert .project-detail canvas {
+        filter: invert(1);
+    }
+
+    /* ===========================
+   FLOWS OF ENTROPY (limpio)
+   1º fila:  Texto | Flows-3 | Flows-2
+   2º fila:  Flows-4 | (Flows-1 ocupa 2 tercios)
+   Alineado por tercios, mismo alto, captions visibles,
+   sin solaparse con el CTA.
+   =========================== */
+
+    #project-flows-of-entropy {
+        /* alto “target” del media de la 2ª fila (ajustá a gusto) */
+        --row-h-foe: min(72vh, 900px);
+    }
+
+    /* Lienzo */
+    #project-flows-of-entropy .project-canvas {
+        padding: 12px;
+    }
+
+    /* Grilla principal a 3 tercios */
+    #project-flows-of-entropy .project-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        /* texto | img | img */
+        column-gap: 12px;
+        row-gap: 4px;
+        /* “solo el caption” separa filas */
+        align-items: start;
+    }
+
+    /* Texto del 1º tercio */
+    #project-flows-of-entropy .project-text {
+        font-size: 18px;
+        line-height: 1.35;
+        text-align: justify;
+        text-align-last: left;
+        hyphens: auto;
+    }
+
+    /* Figuras de la 1ª fila (Flows-3 y Flows-2) */
+    #project-flows-of-entropy .project-fig {
+        margin: 0;
+        display: grid;
+        grid-template-rows: auto auto;
+        /* imagen + caption */
+        align-content: start;
+    }
+
+    #project-flows-of-entropy .project-fig img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    #project-flows-of-entropy .project-fig figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.3;
+        color: #444;
+        text-align: left;
+    }
+
+    /* ===== 2ª FILA: Flows-4 (1/3) | Flows-1 (2/3) =====
+   Usamos la MISMA grilla de 3 tercios para que las columnas
+   queden perfectamente alineadas con la 1ª fila. */
+    #project-flows-of-entropy .row-1-2 {
+        display: contents;
+        /* hereda la grilla de .project-layout */
+    }
+
+    /* Flows-4 → 1er tercio */
+    #project-flows-of-entropy .row-1-2 .cell:nth-child(1) {
+        grid-column: 1 / span 1;
+    }
+
+    /* Flows-1 → ocupa 2º y 3º tercio */
+    #project-flows-of-entropy .row-1-2 .cell:nth-child(2) {
+        grid-column: 2 / span 2;
+    }
+
+    /* Cada cell es un figure con: media (alto fijo) + caption */
+    #project-flows-of-entropy .row-1-2 .cell {
+        margin: 0;
+        display: grid;
+        grid-template-rows: var(--row-h-foe) auto;
+        /* media parejo + caption */
+        overflow: visible;
+        /* que el caption nunca se recorte */
+    }
+
+    #project-flows-of-entropy .row-1-2 .cell>img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    #project-flows-of-entropy .row-1-2 .cell figcaption {
+        margin-top: 2px;
+        font-size: 12px;
+        line-height: 1.2;
+        color: #444;
+        text-align: left;
+    }
+
+    /* Asegura aire antes del CTA y evita solapados */
+    #project-flows-of-entropy .project-canvas>.project-inquiry {
+        margin-top: 12px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 900px) {
+
+        /* apilar todo en una columna */
+        #project-flows-of-entropy .project-layout {
+            grid-template-columns: 1fr;
+            row-gap: 8px;
+        }
+
+        /* la 2ª fila vuelve a ser un grid propio (no contents) */
+        #project-flows-of-entropy .row-1-2 {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        /* sin alto fijo en mobile (no crop agresivo) */
+        #project-flows-of-entropy .row-1-2 .cell {
+            grid-template-rows: auto auto;
+        }
+
+        #project-flows-of-entropy .row-1-2 .cell>img {
+            height: auto;
+            object-fit: contain;
+        }
+    }
+
+    /* === WETMESH I — 2 columnas: texto | video; luego pares de fotos === */
+    #project-wetmesh-i .project-canvas {
+        padding: 12px;
+    }
+
+    #project-wetmesh-i .project-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* mitad | mitad */
+        column-gap: 12px;
+        /* separación lateral */
+        row-gap: 4px;
+        /* <-- margen vertical más chico */
+        align-items: start;
+    }
+
+    /* Texto (soporta .intro-text o .text) */
+    #project-wetmesh-i .intro-text,
+    #project-wetmesh-i .text {
+        font-size: 17px;
+        line-height: 1.35;
+        hyphens: auto;
+        text-align: justify;
+        text-align-last: left;
+    }
+
+    #project-wetmesh-i .intro-text>p,
+    #project-wetmesh-i .text>p {
+        margin: 0 0 8px;
+    }
+
+    #project-wetmesh-i .intro-text>p:last-child,
+    #project-wetmesh-i .text>p:last-child {
+        margin-bottom: 0;
+        /* evita “aire” extra bajo el texto */
+    }
+
+    /* Media */
+    #project-wetmesh-i figure {
+        margin: 0;
+    }
+
+    #project-wetmesh-i img,
+    #project-wetmesh-i video {
+        width: 100%;
+        height: auto;
+        display: block;
+        /* sin inline-gap ni líneas fantasma */
+    }
+
+    #project-wetmesh-i figcaption {
+        margin-top: 2px;
+        /* caption pegado al media */
+        font-size: 12px;
+        line-height: 1.2;
+        color: #444;
+    }
+
+    /* Ubicaciones en la grilla */
+    #project-wetmesh-i .intro-text {
+        grid-column: 1;
+    }
+
+    #project-wetmesh-i .intro-video {
+        grid-column: 2;
+    }
+
+    #project-wetmesh-i .left {
+        grid-column: 1;
+    }
+
+    #project-wetmesh-i .right {
+        grid-column: 2;
+    }
+
+    /* Dejar sola a la izquierda: usar .left en la imagen y (si querés) un .spacer en la 2da celda */
+    #project-wetmesh-i .spacer {
+        grid-column: 2;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        #project-wetmesh-i .project-layout {
+            grid-template-columns: 1fr;
+            row-gap: 10px;
+        }
+
+        #project-wetmesh-i .intro-video,
+        #project-wetmesh-i .right,
+        #project-wetmesh-i .spacer {
+            grid-column: 1;
+        }
+    }
+
+    /* === WETMESH II — 2 columnas: texto | imagen, luego pares === */
+    #project-wetmesh-ii .project-canvas {
+        padding: 12px;
+    }
+
+    #project-wetmesh-ii .project-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* mitad | mitad */
+        column-gap: 12px;
+        row-gap: 4px;
+        align-items: start;
+    }
+
+    /* Texto */
+    #project-wetmesh-ii .intro-text {
+        font-size: 16px;
+        line-height: 1.35;
+        hyphens: auto;
+        text-align: justify;
+        text-align-last: left;
+    }
+
+    #project-wetmesh-ii .intro-text>p {
+        margin: 0 0 8px;
+    }
+
+    #project-wetmesh-ii .intro-text>p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Media */
+    #project-wetmesh-ii figure {
+        margin: 0;
+    }
+
+    #project-wetmesh-ii img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    #project-wetmesh-ii figcaption {
+        margin-top: 2px;
+        font-size: 12px;
+        line-height: 1.2;
+        color: #444;
+    }
+
+    /* Posicionamiento simple */
+    #project-wetmesh-ii .left {
+        grid-column: 1;
+    }
+
+    #project-wetmesh-ii .right {
+        grid-column: 2;
+    }
+
+    #project-wetmesh-ii .spacer {
+        grid-column: 2;
+    }
+
+    /* para dejar la última sola a la izq */
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        #project-wetmesh-ii .project-layout {
+            grid-template-columns: 1fr;
+            row-gap: 10px;
+        }
+
+        #project-wetmesh-ii .right,
+        #project-wetmesh-ii .spacer {
+            grid-column: 1;
+        }
+    }
+
+    #project-video .project-canvas {
+        padding: 12px;
+    }
+
+    #project-video figure {
+        margin: 0;
+    }
+
+    #project-video .video {
+        width: 100%;
+        background: #000;
+        overflow: hidden;
+    }
+
+    #project-video .video>video {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+    #project-video figcaption {
+        margin-top: 4px;
+        font-size: 12px;
+        line-height: 1.35;
+        color: #444;
+    }
+
+    /* === Topbar MOBILE: Projects (izq) + About (der), sin nombre === */
+    @media (max-width: 720px) {
+
+        /* ocultar el nombre */
+        .topbar .nav__left {
+            display: none !important;
+        }
+
+        /* mover "Projects" (nav__center) a la izquierda */
+        .topbar .nav__center {
+            left: var(--pad-x) !important;
+            transform: none !important;
+            white-space: nowrap;
+        }
+
+        /* "About" queda a la derecha como está */
+        .topbar .nav__right {
+            right: var(--pad-x) !important;
+        }
+    }
+
+    /* ===== Mobile: filas de Projects en una sola línea con "..." ===== */
+    @media (max-width: 640px) {
+
+        /* baja apenas el tamaño para que entren mejor */
+        .projects-row {
+            font-size: 22px;
+            /* antes usás var(--text-size) ~26px */
+            line-height: 1;
+            display: flex;
+            /* aseguramos flex */
+            align-items: center;
+        }
+
+        /* IMPORTANTES para que funcione el ellipsis */
+        .projects-row .cell {
+            flex: 1 1 0;
+            min-width: 0;
+            /* sin esto no hace ellipsis */
+            white-space: nowrap;
+            /* no permitir salto */
+            overflow: hidden;
+            /* recortar */
+            text-overflow: ellipsis;
+            /* mostrar "..." */
+        }
+
+        .projects-row .cell.left {
+            text-align: left;
+            padding-right: 8px;
+            /* un pelín de aire con la línea central */
+        }
+
+        .projects-row .cell.right {
+            text-align: right;
+            padding-left: 8px;
+        }
+
+        /* La fila separadora no necesita el recorte */
+        .projects-row.separator .cell {
+            white-space: normal;
+            overflow: visible;
+            text-overflow: clip;
+        }
+    }
+
+    /* ===== MOBILE: barras dentro del flujo y scrollan juntas ===== */
+    @media (max-width: 900px) {
+
+        /* El contenedor del detalle scrollea todo (barras + contenido) */
+        .project-detail {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* El canvas deja de ser absoluto: pasa a flujo normal */
+        .project-canvas {
+            position: relative;
+            top: auto;
+            bottom: auto;
+            height: auto;
+            overflow: visible;
+            /* el scroll lo maneja .project-detail */
+            padding: 12px 12px 32px;
+            /* conserva tu padding */
+        }
+
+        /* Tamaño un poco menor para el título */
+        .project-bar {
+            font-size: 20px;
+            /* antes usabas var(--text-size) ~26px */
+        }
+
+        /* Barra del medio */
+        .project-subbar {
+            font-size: 15px;
+        }
+
+        /* NUEVA barra de materiales (la inyecta tu JS) */
+        .project-subbar-materials {
+            height: var(--bar-h);
+            background: #000;
+            color: #fff;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            display: flex;
+            align-items: center;
+            padding: 0 8px;
+            font-size: 14px;
+        }
+
+        .project-subbar-materials .materials-text {
+            margin-left: auto;
+            /* a la derecha */
+            text-align: right;
+        }
+    }
+
+    /* ===== Alineación: dimensiones a la derecha (también en desktop si querés) ===== */
+    .project-subbar .project-dimensions {
+        justify-self: end;
+        /* <- antes estaba center */
+        text-align: right;
+    }
+
+
+
+    /* ===== MOBILE: título fijo, el resto scrollea ===== */
+    @media (max-width: 900px) {
+
+        /* el contenedor ya scrollea (lo tenías), lo reafirmo */
+        .project-detail {
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* 1) Barra de título (nombre + X): STICKY */
+        .project-bar {
+            position: sticky;
+            top: 0;
+            /* pegada al tope del contenedor */
+            z-index: 5;
+            /* por encima del contenido */
+            /* opcional: un sutil separador visual cuando queda fija */
+            box-shadow: 0 1px 0 #fff, 0 2px 0 rgba(0, 0, 0, .2);
+        }
+
+        /* 2) Sub-barra (tipo+dimensiones) y 3) materiales: NO sticky */
+        .project-subbar,
+        .project-subbar-materials {
+            position: static;
+            /* que sigan el flujo y se vayan con el scroll */
+            box-shadow: none;
+            /* sin sombra extra */
+        }
+
+        /* (De antes) sub-barra: tipo izq / dim der */
+        .project-subbar {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        .project-subbar .project-type {
+            justify-self: start;
+            text-align: left;
+        }
+
+        .project-subbar .project-dimensions {
+            justify-self: end;
+            text-align: right;
+        }
+
+        .project-subbar .project-materials {
+            display: none !important;
+        }
+
+        /* (De antes) barra de materiales: solo el texto centrado */
+        .project-subbar-materials {
+            height: var(--bar-h);
+            background: #000;
+            color: #fff;
+            border-top: 1px solid #fff;
+            border-bottom: 1px solid #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8px;
+            font-size: 14px;
+        }
+
+        .project-subbar-materials .materials-text {
+            text-align: center;
+        }
+    }
+
+    @media (max-width: 900px) {
+
+        /* Oculta materiales en la sub-barra original SOLO si el JS los extrajo */
+        body.materials-extracted .project-subbar .project-materials {
+            display: none !important;
+        }
+
+        /* Barra de materiales centrada */
+        .project-subbar-materials {
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            /* centra el contenedor */
+            text-align: center;
+            /* centrado por si no hay span */
+        }
+
+        .project-subbar-materials .materials-text {
+            margin: 0 !important;
+            text-align: center !important;
+            /* centra líneas múltiples */
+            width: 100%;
+            /* permite centrar en todo el ancho */
+            letter-spacing: .02em;
+        }
+    }
+
+
+
+    .preview {
+        transition: opacity .25s ease;
+    }
+
+    .preview._fading {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* Móvil / dispositivos sin hover: esconder el hint del home */
+    @media (hover: none) and (pointer: coarse) {
+        .hint {
+            display: none !important;
+        }
+    }
+
+
+
+    /* el preview no debe interceptar toques */
+    .preview {
+        pointer-events: none;
+    }
+
+    /* opcional: fade suave al desaparecer */
+    .preview {
+        transition: opacity .2s ease;
+    }
+
+    .preview._fading {
+        opacity: 0;
+    }
+
+
+
+
+
+
+    /* PHORETIC — orden móvil: 1) lead img 2) texto 3) demás imgs */
+    @media (max-width: 720px) {
+        #project-phoretic .project-layout {
+            display: grid;
+            /* ya lo usás; mantenemos grid */
+            grid-template-columns: 1fr;
+            /* una sola columna */
+        }
+
+        #project-phoretic .project-text {
+            order: 2;
+        }
+
+        #project-phoretic .project-fig {
+            order: 3;
+        }
+
+        #project-phoretic .project-fig.lead-mobile {
+            order: 1;
+        }
+    }
+
+
+    /* STATES OF TENSION — orden en móvil:
+   1) video  2) textos  3) resto de imágenes */
+    @media (max-width: 900px) {
+        #project-states-of-tension .project-layout {
+            display: grid;
+            /* ya lo usás; reafirmamos */
+            grid-template-columns: 1fr;
+            /* una columna */
+        }
+
+        /* 1) video primero */
+        #project-states-of-tension .project-media {
+            order: 1;
+        }
+
+        /* 2) luego ambas columnas de texto (mantienen su orden entre sí) */
+        #project-states-of-tension .project-text-col {
+            order: 2;
+        }
+
+        /* 3) al final todas las figuras (fullspan, third, etc.),
+        preservando su orden en el DOM */
+        #project-states-of-tension .project-layout>figure {
+            order: 3;
+        }
+    }
+
+    /* 000 — orden en móvil:
+   1) imagen principal (000.jpg)
+   2) texto
+   3) resto en orden original */
+    @media (max-width: 900px) {
+        #project-000 .project-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+        }
+
+        /* 1) lead img primero */
+        #project-000 .project-fig.lead-mobile {
+            order: 1;
+        }
+
+        /* 2) texto después */
+        #project-000 .project-text {
+            order: 2;
+        }
+
+        /* 3) resto de figures van al final */
+        #project-000 .project-layout>.project-fig:not(.lead-mobile) {
+            order: 3;
+        }
+    }
+
+    /* === FLOWS OF ENTROPY — orden móvil sin superposiciones === */
+    @media (max-width: 900px) {
+        #project-flows-of-entropy .project-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            /* una columna */
+            row-gap: 8px;
+        }
+
+        /* 1) Flows-3 primero */
+        #project-flows-of-entropy .project-fig.lead-mobile {
+            order: 1;
+        }
+
+        /* 2) texto después */
+        #project-flows-of-entropy .project-text {
+            order: 2;
+        }
+
+        /* 3) Flows-2 luego */
+        #project-flows-of-entropy .project-fig.secondary-mobile {
+            order: 3;
+        }
+
+        /* 4) y por último la fila 1/2 (Flows-4 | Flows-1) apilada */
+        #project-flows-of-entropy .row-1-2 {
+            order: 4;
+            display: grid;
+            grid-template-columns: 1fr;
+            /* apilar */
+            row-gap: 8px;
+        }
+
+        /* asegurar que cada figure ocupe todo el ancho y no se superponga */
+        #project-flows-of-entropy figure {
+            margin: 0;
+            width: 100%;
+        }
+
+        #project-flows-of-entropy img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            /* o 'contain' si preferís sin recorte */
+        }
+    }
+
+    /* FLOWS OF ENTROPY — arreglar .row-1-2 en móvil: apilar y ancho completo */
+    @media (max-width: 900px) {
+        #project-flows-of-entropy .row-1-2 {
+            display: grid !important;
+            grid-template-columns: 1fr !important;
+            /* una columna */
+            gap: 8px !important;
+        }
+
+        /* cada celda ocupa toda la fila */
+        #project-flows-of-entropy .row-1-2 .cell {
+            grid-column: 1 / -1 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            float: none !important;
+            /* por si venía con floats */
+            position: static !important;
+            /* evita overlays raros */
+        }
+
+        /* figuras e imágenes fluidas dentro de cada celda */
+        #project-flows-of-entropy .row-1-2 .cell figure {
+            margin: 0 !important;
+            width: 100% !important;
+        }
+
+        #project-flows-of-entropy .row-1-2 .cell img {
+            display: block !important;
+            width: 100% !important;
+            height: auto !important;
+            object-fit: cover;
+            /* cambia a 'contain' si preferís sin recorte */
+        }
+    }
+
+    @media (max-width: 900px) {
+        [id^="project-wetmesh"] .project-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 8px;
+        }
+
+        [id^="project-wetmesh"] figure,
+        [id^="project-wetmesh"] .project-media,
+        [id^="project-wetmesh"] .project-fig {
+            width: 100%;
+            margin: 0;
+            float: none;
+            position: static;
+        }
+
+        [id^="project-wetmesh"] img,
+        [id^="project-wetmesh"] video {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            /* cambia a 'contain' si preferís sin recorte */
+        }
+    }
+
+
+    /* WETMESH II — orden en móvil */
+    @media (max-width: 900px) {
+
+        /* usa cualquiera de estos ids: project-wetmeshii / project-wetmesh-ii */
+        [id^="project-wetmeshii"] .project-layout,
+        [id^="project-wetmesh-ii"] .project-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            row-gap: 8px;
+        }
+
+        /* 1) lead primero */
+        [id^="project-wetmeshii"] .lead-mobile,
+        [id^="project-wetmesh-ii"] .lead-mobile {
+            order: 1;
+        }
+
+        /* 2) texto después */
+        [id^="project-wetmeshii"] .project-text,
+        [id^="project-wetmesh-ii"] .project-text {
+            order: 2;
+        }
+
+        /* 3) resto al final, manteniendo el orden del DOM */
+        [id^="project-wetmeshii"] .project-layout> :not(.lead-mobile):not(.project-text),
+        [id^="project-wetmesh-ii"] .project-layout> :not(.lead-mobile):not(.project-text) {
+            order: 3;
+        }
+
+        /* asegurar ancho completo */
+        [id^="project-wetmeshii"] figure,
+        [id^="project-wetmeshii"] .project-fig,
+        [id^="project-wetmeshii"] .project-media,
+        [id^="project-wetmesh-ii"] figure,
+        [id^="project-wetmesh-ii"] .project-fig,
+        [id^="project-wetmesh-ii"] .project-media {
+            width: 100%;
+            margin: 0;
+            float: none;
+            position: static;
+        }
+
+        [id^="project-wetmeshii"] img,
+        [id^="project-wetmeshii"] video,
+        [id^="project-wetmesh-ii"] img,
+        [id^="project-wetmesh-ii"] video {
+            display: block;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            /* poné 'contain' si no querés recorte */
+        }
+    }
+
+    /* === VIDEOS — Bullbenny set === */
+    .videos-group {
+        margin-top: 20px;
+    }
+
+    .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        align-items: start;
+    }
+
+    .videos-grid .v video {
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        /* verticales */
+        height: auto;
+        object-fit: cover;
+        /* usa contain si no querés recorte */
+        background: #000;
+        display: block;
+    }
+
+    .videos-caption {
+        text-align: center;
+        margin-top: 8px;
+        font-size: 14px;
+        opacity: .85;
+    }
+
+    /* Responsive: en tablet 2 columnas, en mobile 1 */
+    @media (max-width: 900px) {
+        .videos-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 560px) {
+        .videos-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .video-collab .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .video-collab .cell img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+    }
+
+    .video-collab .videos-caption {
+        text-align: center;
+        margin-top: 3px;
+        margin-bottom: 0px;
+        font-size: 14px;
+        opacity: .9;
+    }
+
+    .video-collab .videos-caption a {
+        color: #000;
+        /* ajustá al color de tu web */
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+    }
+
+    .video-collab .videos-caption a:hover {
+        opacity: .7;
+    }
+
+    /* En móvil: apilar en 1 columna */
+    @media (max-width: 900px) {
+        .video-collab .grid-2 {
+            grid-template-columns: 1fr;
+        }
+
+        .video-collab .grid-2 .cell:nth-child(2):empty {
+            display: none;
+        }
+
+        /* oculta la celda vacía */
+    }
+
+    /* VIDEO: caption-bar arriba del media (3 columnas) */
+    #project-video .video-figure.has-top-caption {
+        margin: 0;
+    }
+
+    #project-video .video-caption-bar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        /* izquierda | centro | derecha */
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 8px;
+        /* espacio entre la barra y el video */
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+        color: #000;
+    }
+
+    #project-video .video-caption-bar .left {
+        justify-self: start;
+    }
+
+    #project-video .video-caption-bar .center {
+        justify-self: center;
+    }
+
+    #project-video .video-caption-bar .right {
+        justify-self: end;
+    }
+
+    /* el contenedor del video se queda igual */
+    #project-video .video {
+        width: 100%;
+        background: #000;
+        overflow: hidden;
+    }
+
+    #project-video .video>video {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+    }
+
+
+
+    /* Contenedor con botón de play encima */
+    #project-video .custom-play-wrap {
+        position: relative;
+    }
+
+    /* Botón overlay */
+    #project-video .custom-play {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+        display: grid;
+        place-items: center;
+        /* tamaño adaptable */
+        width: clamp(56px, 8vw, 112px);
+        height: clamp(56px, 8vw, 112px);
+    }
+
+    #project-video .custom-play img {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    #project-video .custom-play:focus-visible {
+        outline: 2px solid #000;
+        outline-offset: 4px;
+    }
+
+    /* opcional: oscurecer apenas el video hasta que den play */
+    #project-video .custom-play-wrap:not(.is-playing) video {
+        filter: brightness(0.85);
+        transition: filter .2s ease;
+    }
+
+    #project-video .custom-play-wrap.is-playing video {
+        filter: none;
+    }
+
+    /* ── VIDEO: barra de caption compartida (3 columnas) ───────────────────── */
+    #project-video .project-canvas .media-caption-bar {
+        display: grid !important;
+        /* fuerza el grid por si algo lo pisa */
+        grid-template-columns: 1fr auto 1fr;
+        /* izq | centro | der */
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 8px;
+        font-size: 16px;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+        color: #000;
+        line-height: 1;
+        /* compacto como tus barras */
+    }
+
+    #project-video .project-canvas .media-caption-bar .left {
+        justify-self: start;
+        font-weight: 700;
+        /* título en bold */
+        white-space: nowrap;
+    }
+
+    #project-video .project-canvas .media-caption-bar .center {
+        justify-self: center;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    #project-video .project-canvas .media-caption-bar .right {
+        justify-self: end;
+        white-space: nowrap;
+    }
+
+    /* opcional: si el ancho es muy chico, que baje a 2/1 líneas */
+    @media (max-width: 720px) {
+        #project-video .project-canvas .media-caption-bar {
+            grid-template-columns: 1fr;
+            row-gap: 4px;
+        }
+
+        #project-video .project-canvas .media-caption-bar .left,
+        #project-video .project-canvas .media-caption-bar .center,
+        #project-video .project-canvas .media-caption-bar .right {
+            justify-self: start;
+            text-align: left;
+        }
+    }
+
+    /* VIDEO: solo la 1ª barra (WETMESH) en bold */
+    #project-video .project-canvas .media-block:first-of-type .media-caption-bar .left {
+        font-weight: 700 !important;
+    }
+
+    /* VIDEO: sólo WETMESH en bold */
+    #project-video .media-block.wetmesh .media-caption-bar .left {
+        font-weight: 700;
+    }
+
+
+    /* Bullbenny: videos verticales a 1/3 cada uno */
+    #project-video .videos-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+
+    /* El contenedor con overlay debe poder posicionar el botón encima */
+    #project-video .custom-play-wrap {
+        position: relative;
+    }
+
+    /* Mantener proporción vertical y que se vea bien el thumb */
+    #project-video .custom-play-wrap video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 9 / 16;
+        /* vertical */
+        object-fit: cover;
+        /* llená el cuadro */
+        display: block;
+    }
+
+    /* Botón de play: que SIEMPRE esté clickeable arriba del video */
+    #project-video .custom-play {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: clamp(56px, 8vw, 112px);
+        height: clamp(56px, 8vw, 112px);
+        border: 0;
+        background: none;
+        padding: 0;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        z-index: 3;
+        /* <— clave */
+        pointer-events: auto;
+        /* <— clave */
+    }
+
+    #project-video .custom-play img {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    /* Leve oscurecido hasta play (opcional) */
+    #project-video .custom-play-wrap:not(.is-playing) video {
+        filter: brightness(0.88);
+        transition: filter .2s ease;
+    }
+
+    #project-video .custom-play-wrap.is-playing video {
+        filter: none;
+    }
+
+    /* Responsivo: 2 y 1 columnas si hace falta */
+    @media (max-width: 900px) {
+        #project-video .videos-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 560px) {
+        #project-video .videos-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    /* 1) Que SOLO los 3 de Bullbenny sean 9:16 */
+    #project-video .videos-group .videos-grid .custom-play-wrap video {
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+    }
+
+    /* 2) Wetmesh: respetá su aspecto natural (horizontal) */
+    #project-video .media-block.wetmesh .custom-play-wrap video {
+        aspect-ratio: auto;
+        /* anula el 9:16 */
+        object-fit: contain;
+        /* como antes */
+        width: 100%;
+        height: auto;
+    }
+
+    /* FUZZY SPHERE: título (izq) en bold */
+    #project-video .media-block.fuzzysphere .media-caption-bar .left {
+        font-weight: 700;
+    }
+
+    /* Asegurar full width y escala correcta del video */
+    #project-video .media-block.fuzzysphere .custom-play-wrap video {
+        width: 100%;
+        height: auto;
+        aspect-ratio: auto;
+        object-fit: contain;
+        /* sin recorte */
+    }
+
+    /* VIDEO — espaciado universal entre bloques (Wetmesh, Bullbenny, Fuzzy, etc.) */
+    #project-video .project-canvas>*+* {
+        margin-top: 40px;
+        /* subí a 48/56/64 si querés más */
+    }
+
+    /* un poco más generoso en desktop */
+    @media (min-width: 901px) {
+        #project-video .project-canvas>*+* {
+            margin-top: 56px;
+        }
+    }
+
+    /* PRESION: link a la izquierda en bold con flecha */
+    #project-video .media-block.presion .media-caption-bar .left a {
+        font-weight: 700;
+        color: #000;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+        /* subrayado sutil */
+    }
+
+    #project-video .media-block.presion .media-caption-bar .left a:hover {
+        opacity: .75;
+    }
+
+    /* imagen ocupa todo el ancho */
+    #project-video .media-block.presion .image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* caption chiquito debajo de la imagen */
+    #project-video .media-block.presion .credit-caption {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 6px;
+        opacity: 0.8;
+    }
+
+    /* FUZZY SPHERE: link izquierdo en bold + subrayado sutil */
+    #project-video .media-block.fuzzysphere .media-caption-bar .left a {
+        font-weight: 700;
+        color: #000;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+    }
+
+    #project-video .media-block.fuzzysphere .media-caption-bar .left a:hover {
+        opacity: .75;
+    }
+
+    /* imagen full width sin recorte */
+    #project-video .media-block.fuzzysphere .image img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* caption chiquito debajo (créditos) */
+    #project-video .media-block.fuzzysphere .credit-caption {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 6px;
+        opacity: 0.8;
+    }
+
+    /* Fuzzy Sphere: caption full-width; imagen mitad izquierda */
+    #project-video .media-block.fuzzysphere {
+        width: 100%;
+        /* el figure ocupa todo el ancho */
+    }
+
+    /* la barra ya ocupa 100% por defecto, no tocamos .media-caption-bar */
+
+    /* la imagen: 50% del ancho, alineada a la izquierda */
+    #project-video .media-block.fuzzysphere .image {
+        width: 50%;
+        max-width: 50%;
+        display: block;
+        /* asegura bloque y que respete el ancho */
+        margin: 0;
+        /* pegada a la izquierda */
+    }
+
+    #project-video .media-block.fuzzysphere .image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        /* sin recorte */
+    }
+
+    /* En mobile: que la imagen vuelva a 100% */
+    @media (max-width: 900px) {
+        #project-video .media-block.fuzzysphere .image {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+
+    /* PRESION: caption full-width, imagen mitad izquierda */
+    #project-video .media-block.presion {
+        width: 100%;
+    }
+
+    /* imagen ocupa 50% y se alinea a la izquierda */
+    #project-video .media-block.presion .image {
+        width: 50%;
+        max-width: 50%;
+        display: block;
+        margin: 0;
+    }
+
+    #project-video .media-block.presion .image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* caption de crédito debajo (ya lo tenías, lo dejo aquí por claridad) */
+    #project-video .media-block.presion .credit-caption {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 6px;
+        opacity: 0.8;
+    }
+
+    /* en mobile: imagen vuelve a 100% */
+    @media (max-width: 900px) {
+        #project-video .media-block.presion .image {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    /* Presion: créditos alineados a la izquierda */
+    #project-video .media-block.presion .credit-caption {
+        text-align: left;
+        font-size: 12px;
+        margin-top: 6px;
+        opacity: 0.8;
+    }
+
+    /* ===== RESEARCH LAB — barra de caption superior (igual que en VIDEO) ===== */
+    #project-research-lab .media-caption-bar {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 8px;
+        font-size: 14px;
+        letter-spacing: .03em;
+        text-transform: uppercase;
+        color: #000;
+        line-height: 1;
+    }
+
+    #project-research-lab .media-caption-bar .left {
+        justify-self: start;
+    }
+
+    #project-research-lab .media-caption-bar .center {
+        justify-self: center;
+        text-align: center;
+    }
+
+    #project-research-lab .media-caption-bar .right {
+        justify-self: end;
+    }
+
+    /* ===== RESEARCH LAB — aire universal entre bloques del canvas ===== */
+    #project-research-lab .project-canvas>*+* {
+        margin-top: 40px;
+    }
+
+    @media (min-width: 901px) {
+        #project-research-lab .project-canvas>*+* {
+            margin-top: 56px;
+        }
+    }
+
+    /* ===== RESEARCH LAB — mitad izquierda (primer bloque) ===== */
+    #project-research-lab .half-left {
+        width: 100%;
+    }
+
+    #project-research-lab .half-left .image {
+        width: 50%;
+        max-width: 50%;
+        display: block;
+        margin: 0;
+    }
+
+    #project-research-lab .half-left .image img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+    }
+
+    #project-research-lab .half-left .credit-caption {
+        font-size: 12px;
+        margin-top: 6px;
+        opacity: .85;
+        text-align: left;
+        /* alinear con la imagen */
+    }
+
+    @media (max-width: 900px) {
+        #project-research-lab .half-left .image {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+
+    /* ===== RESEARCH LAB — grilla 3 columnas (tercios) ===== */
+    #project-research-lab .rl-grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        align-items: start;
+    }
+
+    #project-research-lab .rl-grid-3 .cell {
+        margin: 0;
+    }
+
+    #project-research-lab .rl-grid-3 img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        /* usá 'contain' si no querés recorte */
+    }
+
+    @media (max-width: 900px) {
+        #project-research-lab .rl-grid-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 560px) {
+        #project-research-lab .rl-grid-3 {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* caption inferior pequeño para grillas (Bremen 2025) */
+    #project-research-lab .rl-smallcap {
+        text-align: center;
+        font-size: 12px;
+        margin-top: 6px;
+        opacity: .85;
+    }
+
+    /* separadores de sección (opcional: un pelo más de aire arriba de cada rl-block) */
+    #project-research-lab .rl-block+.rl-block {
+        margin-top: 40px;
+    }
+
+    @media (min-width: 901px) {
+        #project-research-lab .rl-block+.rl-block {
+            margin-top: 56px;
+        }
+    }
+
+    /* Research Lab: izquierda en negrita en la barra superior */
+    #project-research-lab .media-caption-bar .left {
+        font-weight: 700 !important;
+        /* tu body usa 300, por eso antes no se notaba */
+    }
+
+
+    /* No inviertas nada visual en #project-video cuando el sitio está invertido */
+    body.invert #project-video img,
+    body.invert #project-video video {
+        filter: invert(1) !important;
+        /* doble-invert para verlos normales */
+    }
+
+    /* (opcional) si ves que algún wrapper te cambia de color con el invert */
+    body.invert #project-video .video,
+    body.invert #project-video .videos-grid .v {
+        filter: invert(1) !important;
+    }
+
+    @media (max-width: 900px) {
+        #project-states-of-tension .project-subbar-materials {
+            font-size: 11px;
+            /* antes 14px */
+        }
+    }
+
+    /* Project Detail: nombre del proyecto en bold en todas las secciones */
+    .project-detail .project-bar .project-title {
+        font-weight: 600 !important;
+    }
+
+    /* About: títulos en bold solo en estas secciones */
+    #bio h2,
+    #statement h2,
+    #exhibitions h2,
+    #prizes h2,
+    #press h2 {
+        font-weight: 700 !important;
+    }
+
+    /* VIDEO — caption en dos líneas (nombre+año, abajo técnica) */
+    #project-video .media-caption-bar.stacked {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        /* arranque a la izquierda */
+        gap: 2px;
+        margin: 0 0 8px;
+        line-height: 1.2;
+        text-transform: none;
+        /* técnica en normal, sin mayúsculas forzadas */
+    }
+
+    /* línea 1: NOMBRE (bold) + año (normal) en una misma línea */
+    #project-video .media-caption-bar.stacked .line1 {
+        font-size: 14px;
+        letter-spacing: .03em;
+    }
+
+    #project-video .media-caption-bar.stacked .line1 .name {
+        font-weight: 700;
+        /* negrita visible aunque el body esté en 300 */
+    }
+
+    #project-video .media-caption-bar.stacked .line1 .year {
+        font-weight: 400;
+        margin-left: 6px;
+        /* “un espacio” visual */
+    }
+
+    /* línea 2: técnica */
+    #project-video .media-caption-bar.stacked .line2 {
+        font-size: 13px;
+        opacity: .95;
+    }
+
+    /* móvil: bajamos 1pt aprox */
+    @media (max-width: 900px) {
+        #project-video .media-caption-bar.stacked .line1 {
+            font-size: 13px;
+        }
+
+        #project-video .media-caption-bar.stacked .line2 {
+            font-size: 12px;
+        }
+    }
+
+    #project-video .media-caption-bar.stacked .line1 .name a {
+        font-weight: 700;
+        color: #000;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+    }
+
+    #project-video .media-caption-bar.stacked .line1 .name a:hover {
+        opacity: .75;
+    }
+
+    /* VIDEO: forzar que el caption .stacked sea en columna (nombre+año arriba, técnica abajo) */
+    #project-video .media-caption-bar.stacked {
+        display: flex !important;
+        /* pisa el grid de la versión clásica */
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 2px;
+        text-transform: none;
+        /* técnica en normal */
+    }
+
+    /* cada línea ocupa su propio renglón, alineada a la izquierda */
+    #project-video .media-caption-bar.stacked .line1,
+    #project-video .media-caption-bar.stacked .line2 {
+        display: block;
+        width: 100%;
+        text-align: left !important;
+    }
+
+    /* estética */
+    #project-video .media-caption-bar.stacked .line1 {
+        font-size: 14px;
+        letter-spacing: .03em;
+    }
+
+    #project-video .media-caption-bar.stacked .line1 .name {
+        font-weight: 700;
+    }
+
+    #project-video .media-caption-bar.stacked .line1 .year {
+        font-weight: 400;
+        margin-left: 6px;
+    }
+
+    #project-video .media-caption-bar.stacked .line2 {
+        font-size: 13px;
+        opacity: .95;
+    }
+
+    /* mobile: un punto menos aprox */
+    @media (max-width: 900px) {
+        #project-video .media-caption-bar.stacked .line1 {
+            font-size: 13px;
+        }
+
+        #project-video .media-caption-bar.stacked .line2 {
+            font-size: 12px;
+        }
+    }
+
+
+    /* RESEARCH LAB — caption stacked (nombre + año) */
+    #project-research-lab .media-caption-bar.stacked {
+        display: flex !important;
+        /* pisa el grid clásico */
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 2px;
+        margin: 0 0 8px;
+        line-height: 1.2;
+        text-transform: none;
+        /* no forzar mayúsculas */
+    }
+
+    #project-research-lab .media-caption-bar.stacked .line1 {
+        display: block;
+        width: 100%;
+        text-align: left !important;
+        font-size: 14px;
+        letter-spacing: .03em;
+    }
+
+    #project-research-lab .media-caption-bar.stacked .line1 .name {
+        font-weight: 700;
+        /* NOMBRE en negrita */
+    }
+
+    #project-research-lab .media-caption-bar.stacked .line1 .year {
+        font-weight: 400;
+        /* AÑO normal */
+        margin-left: 6px;
+        /* “un espacio” visual */
+    }
+
+    /* Si alguna sección usa línea 2 (técnica), la formateamos suave */
+    #project-research-lab .media-caption-bar.stacked .line2 {
+        display: block;
+        width: 100%;
+        text-align: left !important;
+        font-size: 13px;
+        opacity: .95;
+    }
+
+    /* Mobile: bajar 1pt aprox */
+    @media (max-width: 900px) {
+        #project-research-lab .media-caption-bar.stacked .line1 {
+            font-size: 13px;
+        }
+
+        #project-research-lab .media-caption-bar.stacked .line2 {
+            font-size: 12px;
+        }
+    }
+
+    /* === EXCEPCIONES EN MODO INVERT ===
+   Estos 4 videos deben quedar invertidos (o sea: SIN el doble-invert). */
+    body.invert #project-video video[src*="Wetmesh Rafael Soto Acebal (Nyzuz).mp4"],
+    body.invert #project-video video[src*="B1.mp4"],
+    body.invert #project-video video[src*="B2.mp4"],
+    body.invert #project-video video[src*="B3.mp4"] {
+        filter: none !important;
+        /* no anulamos el invert del <body> */
+    }
+
+    /* Si querés mantener el “oscurecido” antes de reproducir, aplicalo así: */
+    body.invert #project-video .custom-play-wrap:not(.is-playing) video[src*="Wetmesh Rafael Soto Acebal (Nyzuz).mp4"],
+    body.invert #project-video .custom-play-wrap:not(.is-playing) video[src*="B1.mp4"],
+    body.invert #project-video .custom-play-wrap:not(.is-playing) video[src*="B2.mp4"],
+    body.invert #project-video .custom-play-wrap:not(.is-playing) video[src*="B3.mp4"] {
+        filter: brightness(0.90) !important;
+        /* 1 sola inversión + dim */
+
+    }
+
+    /* About: foto al ancho del texto */
+    .about-panel .about-content .bio-portrait {
+        margin: 0 0 12px;
+    }
+
+    .about-panel .about-content .bio-portrait img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }

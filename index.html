@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rafael Soto Acebal</title>
+
+  <!-- Favicons -->
+  <link rel="icon" href="assets/Icons/favicon.ico?v=4" type="image/x-icon" sizes="any">
+  <link rel="shortcut icon" href="assets/Icons/favicon.ico?v=4" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/Icons/favicon-32.png?v=4">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/Icons/favicon-16.png?v=4">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/Icons/apple-touch-icon.png?v=4">
+  <link rel="stylesheet" href="styles.css">
+
+<body>
+
+  <!-- Barra -->
+  <header class="topbar" aria-label="Top bar">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="nav__left" href="#" id="nav-home">Rafael Soto Acebal</a>
+      <a class="nav__center" href="#" id="nav-projects">Projects</a>
+      <a class="nav__right" href="#" id="nav-about">About</a>
+    </nav>
+  </header>
+
+  <!-- Barras secundarias de About -->
+  <div class="about-bars" aria-hidden="true">
+    <div class="about-bar">
+      <button class="btn-close" id="btn-close" aria-label="Close About">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="about-bar">
+      <div class="about-links">
+        <a href="mailto:rsotoacebal@gmail.com">rsotoacebal@gmail.com</a>
+        <a href="https://www.instagram.com/nyzuz_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS overlay -->
+  <div class="projects" aria-hidden="true">
+    <!-- fila X -->
+    <div class="projects-row">
+      <button class="btn-close-projects" id="btn-close-projects" aria-label="Close Projects">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+
+    <!-- izquierda -->
+    <div class="projects-row project-item" data-id="project-phoretic" data-title="Phoretic" data-year="2025"
+      data-thumb="assets/thumbs/phoretic.png">
+      <div class="cell left">Phoretic</div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="projects-row project-item" data-id="project-states-of-tension" data-title="States of Tension"
+      data-year="2024" data-thumb="assets/thumbs/states-of-tension.png">
+      <div class="cell left">States of Tension</div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="projects-row project-item" data-id="project-000" data-title="000" data-year="2023"
+      data-thumb="assets/thumbs/000.png">
+      <div class="cell left">000</div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="projects-row project-item" data-id="project-flows-of-entropy" data-title="Flows of Entropy"
+      data-year="2024" data-thumb="assets/thumbs/flows-of-entropy.png">
+      <div class="cell left">Flows of Entropy</div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="projects-row project-item" data-id="project-wetmesh-i" data-title="Wetmesh I" data-year="2025"
+      data-thumb="assets/thumbs/wetmesh-1.png">
+      <div class="cell left">Wetmesh I</div>
+      <div class="cell right"></div>
+    </div>
+
+    <div class="projects-row project-item" data-id="project-wetmesh-ii" data-title="Wetmesh II" data-year="2025"
+      data-thumb="assets/thumbs/wetmesh-2.png">
+      <div class="cell left">Wetmesh II</div>
+      <div class="cell right"></div>
+    </div>
+
+
+    <!-- separadora -->
+    <div class="projects-row separator">
+      <div class="cell left"></div>
+      <div class="cell right"></div>
+    </div>
+
+    <!-- derecha -->
+    <div class="projects-row asset-item" data-id="project-video" data-title="Video"
+      data-thumb="assets/thumbs/video.png">
+      <div class="cell left"></div>
+      <div class="cell right">Video</div>
+    </div>
+
+    <div class="projects-row asset-item" data-id="project-visualization" data-title="Visualization"
+      data-thumb="assets/thumbs/visualization.png">
+      <div class="cell left"></div>
+      <div class="cell right">Visualization</div>
+    </div>
+
+    <div class="projects-row asset-item" data-id="project-research-lab" data-title="Research Lab"
+      data-thumb="assets/thumbs/research-lab.png">
+      <div class="cell left"></div>
+      <div class="cell right">Research Lab</div>
+    </div>
+
+
+  </div>
+
+  <!-- Thumbnail centrado para hover de proyectos -->
+  <div class="preview" id="project-preview" aria-hidden="true">
+    <img class="preview__img" id="preview-img" src="" alt="">
+    <div class="preview__header">
+      <span id="preview-title"></span>
+      <span id="preview-year"></span>
+    </div>
+  </div>
+
+  <!-- ====== Project Detail: PHORETIC ====== -->
+  <section class="project-detail" id="project-phoretic" aria-label="Project: PHORETIC">
+    <div class="project-bar">
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+      <span class="project-title">PHORETIC</span>
+    </div>
+    <div class="project-subbar">
+      <span class="project-type">Kinetic Sculpture (2025)</span>
+      <span class="project-dimensions">215 × 28 × 28 cm</span>
+      <span class="project-materials">[ALUMINUM, TPU, POLARIZER, SLA]</span>
+    </div>
+
+    <div class="project-canvas">
+      <div class="project-layout">
+        <div class="project-text">
+          <p>Phoretic is a suspended sculpture composed of ten articulated modules. In each, TPU is held in tension
+            between polarized filters, making visible the interplay of light and material stress through shifting
+            patterns
+            of photoelasticity. These subtle chromatic variations expose the forces contained in the material itself,
+            rendering tension both structural and perceptible.</p>
+          <p>Suspended like a mobile, Phoretic takes the form of a multiple body somewhere between myriapod and
+            synthetic
+            organism in constant suggestion of transit and motion. Its articulated modules generate a biomorphic
+            presence,
+            evoking both organic and mechanical associations without fully belonging to either.</p>
+          <p>The work draws from the concept of phoresy: organisms that use others as a temporary means of transport. In
+            this case, the exhibition space itself becomes a transitional infrastructure. Phoretic does not remain
+            static;
+            it exists in a state of passage, carried and conditioned by its environment.</p>
+          <p>Far from passive, the piece responds to minimal changes in its surroundings. Air currents, the movement of
+            visitors, and the modulations of light activate the work, making it sensitive to what unfolds around it.
+            Through these subtle responses, Phoretic introduces a form of interference: it distorts the light, captures
+            the breeze, and alters the circulation of bodies in space.</p>
+          <p>Its presence operates as a third element, neither object nor background. It redistributes flows and
+            disrupts
+            established dualisms, opening space for new relations to emerge. Phoretic makes noise, but at the same time,
+            it is made by that noise. The piece suggests that such interference within a system can also become the seed
+            of another one—where disturbance is not collapse, but the origin of a new order.</p>
+        </div>
+
+        <figure class="project-fig">
+          <img src="assets/projects/Phoretic/Phoretic.jpg" alt="Phoretic sculpture main view" loading="lazy"
+            decoding="async">
+          <figcaption>2025 · London</figcaption>
+        </figure>
+
+        <figure class="project-fig">
+          <img src="assets/projects/Phoretic/Phoretic-1.jpg" alt="Phoretic sculpture detail" loading="lazy"
+            decoding="async">
+          <figcaption>2025 · London</figcaption>
+        </figure>
+
+        <figure class="project-fig">
+          <img src="assets/projects/Phoretic/Phoretic-2.jpg" alt="Phoretic sculpture detail 2" loading="lazy"
+            decoding="async">
+          <figcaption>2025 · London</figcaption>
+        </figure>
+
+        <figure class="project-fig">
+          <img src="assets/projects/Phoretic/Phoretic-3.jpg" alt="Phoretic sculpture detail 3" loading="lazy"
+            decoding="async">
+          <figcaption>2025 · London</figcaption>
+        </figure>
+
+        <figure class="project-fig">
+          <img src="assets/projects/Phoretic/Phoretic-4.jpg" alt="Phoretic sculpture detail 4" loading="lazy"
+            decoding="async">
+          <figcaption>2025 · London</figcaption>
+        </figure>
+
+        <figure class="project-fig">
+          <img src="assets/projects/Phoretic/Phoretic-5.jpg" alt="Phoretic sculpture detail 5" loading="lazy"
+            decoding="async">
+          <figcaption>2025 · London</figcaption>
+        </figure>
+
+        <figure class="project-fig">
+          <img src="assets/projects/Phoretic/Phoretic-6.jpg" alt="Phoretic sculpture detail 6" loading="lazy"
+            decoding="async">
+          <figcaption>2025 · London</figcaption>
+        </figure>
+
+      </div>
+      <div class="project-inquiry">
+        For inquiries regarding this work, including acquisition, please feel free to get in touch via
+        <a href="mailto:rsotoacebal@gmail.com">email</a>.
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- ====== Project Detail: STATES OF TENSION ====== -->
+  <section class="project-detail" id="project-states-of-tension" aria-label="Project: STATES OF TENSION">
+    <div class="project-bar">
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+      <span class="project-title">STATES OF TENSION</span>
+    </div>
+    <div class="project-subbar">
+      <span class="project-type">Kinetic Sculpture (2024)</span>
+      <span class="project-dimensions">185 × 64 × 64 cm</span>
+      <span class="project-materials">[TPU, POLARIZER, ALUMINUM, MOTORS, MICRO-CONTROLLER]</span>
+    </div>
+    <div class="project-canvas">
+      <div class="project-layout">
+        <!-- 1º tercio: texto conceptual -->
+        <div class="project-text-col">
+          <p>States of Tension offers a visual and material exploration of tension as a constant and inherent condition
+            of both physical and perceptual systems. Through a TPU sheet subjected to mechanical forces and revealed by
+            a system of polarized filters, the internal distribution of stress within the material becomes visible.</p>
+
+          <p>The piece moves beyond a physical display, incorporating the imprint of my own body. The gesture of
+            manually stretching the sheet introduces a trace of tension into the material, turning the piece into a
+            visual narrative where the mechanical and the personal intertwine, transforming it into a device of
+            perceptual experience.</p>
+
+          <p>Tension is not a static state nor an isolated entity, but a dynamic force in constant fluctuation. It
+            manifests not only in the deformation of a body under load, but also in our biological and emotional
+            structures, regulating the fragile balance between order and chaos.</p>
+
+          <p>In dialogue with broader discourses on life and matter, States of Tension resonates with Schrödinger’s
+            definition of life as the capacity to maintain order against entropy, and with Prigogine’s notion of
+            dissipative structures, which achieve organization through instability. Within this constellation, the
+            installation becomes more than a material experiment: it embodies the paradox of systems that exist only by
+            sustaining tension. It is through the phenomenon of photoelasticity, revealed by polarized filters, that
+            patterns of stress normally hidden from view are made visible. </p>
+
+          <p>These structures of light and color echo the invisible fields that also shape our relations. Proxemics
+            extends this reading: our bodies generate invisible spheres of tension—intimate, personal, social—whose
+            disruption alters emotional and relational equilibrium. In this way, the material and the social converge in
+            a shared principle: tension as a condition of form, relation, and existence.</p>
+        </div>
+
+        <!-- 2º tercio: texto técnico -->
+        <div class="project-text-col">
+          <p>States of Tension is constructed as a rectangular prism made of aluminum profiles, externally clad with
+            acrylic panels and polarizing filters. At the lower corners, four stepper motors drive linear spindles along
+            the Z-axis, controlled by a microcontroller and four dedicated drivers. Each spindle anchors one corner of
+            the TPU sheet, producing a coordinated yet irregular movement that allows the material to oscillate between
+            states of rest and states of tension. The use of a programmable microcontroller introduces an additional
+            layer of variability: parameters such as speed, amplitude, and timing can be modulated, generating rhythms
+            that alternate between subtle vibration and sudden strain. Through the technique of photoelasticity (cross
+            polarization), these fluctuating states become visible as chromatic interference patterns—ephemeral images
+            of stress translated into light. This technological system thus functions not only as a mechanism for
+            movement, but as an active interface where material, code, and perception converge, drawing the viewer into
+            a state of attention and trance that is simultaneously physical and experiential.</p>
+
+          <p>This system explores how tension, in its varying intensities, can generate organized structures or induce
+            destabilization. An increase in tension may foster cohesion and order, while its reduction tends toward
+            disorder. Yet, excessive tension can lead to collapse, just as its complete absence may cause
+            disintegration.</p>
+
+          <p>States of Tension ultimately reflects on the interplay between stability and instability, showing how
+            tension operates simultaneously in the physical, biological, and social realms. Whether in a TPU sheet, in a
+            living cell, or in the invisible distance between two bodies, tension emerges as a fundamental principle
+            that shapes matter, structures, and perception.</p>
+        </div>
+
+        <!-- 3º tercio: video vertical -->
+        <aside class="project-media">
+          <div class="video-wrap portrait"> <!-- o: class="video-wrap portrait fill" -->
+            <video muted autoplay loop playsinline preload="metadata" controls
+              poster="assets/projects/StatesOfTension/SoT-1-poster-9x16.jpg"><!-- poster 9:16 -->
+              <source src="assets/projects/StatesOfTension/SoT-1.webm" type="video/webm">
+              <source src="assets/projects/StatesOfTension/SoT-1.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="media-caption">2024 · Potsdam</div>
+        </aside>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-2.jpg" alt="States of Tension — full view" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Potsdam</figcaption>
+        </figure>
+
+        <figure class="third">
+          <img src="assets/projects/StatesOfTension/SoT-3.jpg" alt="States of Tension — view 3" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Potsdam</figcaption>
+        </figure>
+
+        <figure class="third">
+          <img src="assets/projects/StatesOfTension/SoT-4.jpg" alt="States of Tension — view 4" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Bremen</figcaption>
+        </figure>
+
+        <figure class="third">
+          <img src="assets/projects/StatesOfTension/SoT-5.jpg" alt="States of Tension — view 5" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Potsdam</figcaption>
+        </figure>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-6.jpg" alt="States of Tension — full view 6" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Bremen</figcaption>
+        </figure>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-6bis.jpg" alt="States of Tension — full view 6" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Bremen</figcaption>
+        </figure>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-7.jpg" alt="States of Tension — full view 6" loading="lazy"
+            decoding="async">
+          <figcaption>2024</figcaption>
+        </figure>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-8.jpg" alt="States of Tension — full view 6" loading="lazy"
+            decoding="async">
+          <figcaption>2024 </figcaption>
+        </figure>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-9.jpg" alt="States of Tension — full view 6" loading="lazy"
+            decoding="async">
+          <figcaption>2024</figcaption>
+        </figure>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-10.jpg" alt="States of Tension — full view 6" loading="lazy"
+            decoding="async">
+          <figcaption>2024</figcaption>
+        </figure>
+
+        <figure class="fullspan">
+          <img src="assets/projects/StatesOfTension/SoT-11.jpg" alt="States of Tension — full view 6" loading="lazy"
+            decoding="async">
+          <figcaption>2024</figcaption>
+        </figure>
+      </div>
+
+
+
+      <!-- CTA (borralo si ya usás el script automático) -->
+      <div class="project-inquiry">
+        For inquiries regarding this work, including acquisition, please feel free to get in touch via
+        <a href="mailto:rsotoacebal@gmail.com">email</a>.
+      </div>
+    </div>
+
+    </div>
+
+  </section>
+
+  <!-- ====== Project Detail: 000 ====== -->
+  <section class="project-detail" id="project-000" aria-label="Project: 000">
+    <div class="project-bar">
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+      <span class="project-title">000</span>
+    </div>
+    <div class="project-subbar">
+      <span class="project-type">Kinetic Sculpture (2023)</span>
+      <span class="project-dimensions">60 × 60 × 60 cm</span>
+      <span class="project-materials">[ALUMINUM, ACRYLIC, CRT TV, RASPBERRY PI]</span>
+    </div>
+    <div class="project-canvas">
+
+      <!-- Fila 1: 1/3 TEXTO | 2/3 IMAGEN -->
+      <div class="project-layout">
+        <!-- 1/3: TEXTO -->
+        <div class="project-text">
+          <p>"000" is a video art and kinetic machine developed from the redesign of a CRT monitor, reconfigured as a
+            contemporary optical device. At its core lies a custom acrylic lens with ripple geometry, conceived as a
+            unique morphology for the work. This lens distorts the visuals, transforming the screen into a luminous
+            field
+            of interference and perception. The piece seeks to prolong fleeting perceptual moments—those ephemeral
+            instants that usually vanish in seconds—by suspending them in an extended temporal frame through the static
+            yet dynamic movement proposed by the lens.</p>
+          <p>The visual content emerges from a hybrid process combining digital and analog techniques. Starting from
+            digital imagery, the visuals were processed through chains of analog mixers, feedback loops, and
+            synthesizers,
+            before being displayed on a CRT monitor. The re-recorded output was transferred to a Raspberry Pi and
+            integrated into 000. This layered trajectory digital to analog, screen to lens—creates a hybrid materiality
+            where the image becomes unstable, reshaped as it passes through successive systems of translation.</p>
+          <p>The work also engages with the notion of the “black box,” a system in which inputs and outputs are
+            perceivable while the inner processes remain opaque. This trajectory from digital generation to analog
+            feedback loops, through the CRT screen and into 000 renders the image as a black box in motion. Each
+            translation transforms the signal in ways that are partly comprehensible yet fundamentally elusive. By
+            exposing these passages, the piece opens the black box of image-making—not to resolve it, but to render its
+            opacity visible, turning incomprehensible processes into perceptual experience.</p>
+          <p>The interaction between distorted visuals and ripple morphology generates luminous effects and optical
+            illusions, challenging perception and dissolving boundaries between the static and the dynamic. As light
+            shifts and transforms, new perspectives emerge, inviting exploration of duality. By reanimating a discarded
+            medium through a new material language, 000 reflects on the persistence of technology, the fragility of
+            perception, and the fleeting nature of images as they pass through bodies, lenses, and time.</p>
+        </div>
+
+        <!-- 2/3: IMAGEN PRINCIPAL -->
+        <figure class="project-fig two-span">
+          <img src="assets/projects/000/000.jpg" alt="000 — main view" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+        </figure>
+      </div><!-- /project-layout -->
+
+      <!-- Fila 2: 1/3 VIDEO | 2/3 FOTO (grid independiente) -->
+      <div class="row-1-2">
+        <!-- 1/3: VIDEO -->
+        <figure class="cell">
+          <video muted autoplay loop playsinline controls preload="metadata"
+            poster="assets/projects/000/000-poster.jpg">
+            <source src="assets/projects/000/000.webm" type="video/webm">
+            <source src="assets/projects/000/000.mp4" type="video/mp4">
+          </video>
+
+          <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+        </figure>
+        <!-- 2/3: FOTO -->
+        <figure class="cell">
+          <img src="assets/projects/000/000-18.jpg" alt="000 — view 18" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires F: Manuela Mujica</figcaption>
+        </figure>
+      </div><!-- /row-1-2 -->
+
+      <!-- Full-width image -->
+      <figure class="project-fig fullspan-000">
+        <img src="assets/projects/000/000-11.jpg" alt="000 — view 11" loading="lazy" decoding="async">
+        <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+      </figure>
+
+      <!-- Fila 50/50 -->
+      <div class="row-1-1">
+        <figure class="cell">
+          <img src="assets/projects/000/000-8.jpg" alt="000 — view 8" loading="lazy" decoding="async">
+          <figcaption>2023</figcaption>
+        </figure>
+
+        <figure class="cell">
+          <img src="assets/projects/000/000-4.jpg" alt="000 — view 4" loading="lazy" decoding="async">
+          <figcaption>2023</figcaption>
+        </figure>
+      </div>
+      <!-- Fila mitad | mitad: 000-3 y 000-5 -->
+      <div class="row-1-1">
+        <figure class="cell">
+          <img src="assets/projects/000/000-3.jpg" alt="000 — view 3" loading="lazy" decoding="async">
+          <figcaption>2023</figcaption>
+        </figure>
+
+        <figure class="cell">
+          <img src="assets/projects/000/000-5.jpg" alt="000 — view 5" loading="lazy" decoding="async">
+          <figcaption>2023</figcaption>
+        </figure>
+      </div>
+
+      <!-- 000 — full width -->
+      <figure class="fullspan">
+        <img src="assets/projects/000/000-10.jpg" alt="000 — view 10" loading="lazy" decoding="async">
+        <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+      </figure>
+
+      <!-- 000 — mitad video | mitad foto -->
+      <div class="row-1-1">
+        <figure class="cell">
+          <video muted autoplay loop playsinline controls preload="metadata"
+            poster="assets/projects/000/000axo-poster.jpg">
+            <source src="assets/projects/000/000axo.mp4" type="video/mp4">
+          </video>
+          <figcaption>2023 · </figcaption>
+        </figure>
+
+
+
+        <figure class="cell">
+          <img src="assets/projects/000/000-2.jpg" alt="000 — view 2" loading="lazy" decoding="async">
+          <figcaption>2023 · </figcaption>
+        </figure>
+      </div>
+
+      <!-- 000 — mitad foto | mitad foto -->
+      <div class="row-1-1">
+        <figure class="cell">
+          <img src="assets/projects/000/000-6.jpg" alt="000 — view 6" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires</figcaption>
+        </figure>
+
+        <figure class="cell">
+          <img src="assets/projects/000/000-7.jpg" alt="000 — view 7" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires</figcaption>
+        </figure>
+      </div>
+
+      <!-- 000 — mitad foto | mitad foto -->
+      <div class="row-1-1">
+        <figure class="cell">
+          <img src="assets/projects/000/000-16.jpg" alt="000 — view 6" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+        </figure>
+
+        <figure class="cell">
+          <img src="assets/projects/000/000-15.jpg" alt="000 — view 7" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+        </figure>
+      </div>
+
+      <!-- 000 — mitad foto | mitad foto -->
+      <div class="row-1-1">
+        <figure class="cell">
+          <img src="assets/projects/000/000-12.jpg" alt="000 — view 6" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+        </figure>
+
+        <figure class="cell">
+          <img src="assets/projects/000/000-13.jpg" alt="000 — view 7" loading="lazy" decoding="async">
+          <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+        </figure>
+      </div>
+
+      <!-- 000 — full width -->
+      <figure class="fullspan">
+        <img src="assets/projects/000/000-9.jpg" alt="000 — view 10" loading="lazy" decoding="async">
+        <figcaption>2023 · Buenos Aires F: Felipe Gaggero</figcaption>
+      </figure>
+
+
+
+
+
+
+
+
+      <!-- CTA -->
+      <div class="project-inquiry">
+        For inquiries regarding this work, including acquisition, please feel free to get in touch via
+        <a href="mailto:rsotoacebal@gmail.com">email</a>.
+      </div>
+    </div>
+
+    </div>
+
+
+  </section>
+
+  <!-- ====== Project Detail: FLOWS OF ENTROPY ====== -->
+  <section class="project-detail" id="project-flows-of-entropy" aria-label="Project: FLOWS OF ENTROPY">
+    <div class="project-bar">
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+      <span class="project-title">FLOWS OF ENTROPY</span>
+    </div>
+    <div class="project-subbar">
+      <span class="project-type">Light Kinetic Sculpture (2024)</span>
+      <span class="project-dimensions">25 × 25 × 25 cm</span>
+      <span class="project-materials">[TPU, SLA, WATER]</span>
+    </div>
+    <div class="project-canvas">
+      <div class="project-layout">
+        <!-- 1er tercio: TEXTO -->
+        <div class="project-text">
+          <p>Flows of Entropy begins from an icosahedron, a geometric figure associated with stability, which is
+            transformed into an organic morphology inspired by microscopic marine organisms.
+            This shift from the geometric to the biological highlights the tension between abstract forms and structures
+            found in nature.</p>
+          <p>Inside, a flexible container filled with water occupies the voids of the structure and acts as the active
+            core of the piece.
+            Water introduces a condition of instability: it is never static, always susceptible to minimal disturbances.
+            A source of overhead light passes through this liquid body and projects constantly changing refraction
+            patterns into the surrounding space.</p>
+          <p>The sculpture is suspended and responds directly to its environment.
+            Air currents, spatial vibrations, or the movement of visitors alter the water, generating unrepeatable
+            optical variations.
+            The work is therefore not conceived as a fixed object but as an open system in which material and
+            environmental conditions are interdependent.</p>
+          <p>
+            The project is framed within a broader investigation of entropy understood as both a physical and perceptual
+            process.
+            The initial geometric order is altered by fluctuations that produce ephemeral optical configurations.
+            The piece does not aim to represent entropy symbolically, but rather to make it visible as a sensible
+            dynamic in space, where disorder is not destruction but a condition for variation.
+          </p>
+        </div>
+
+        <!-- 2º tercio: IMAGEN -->
+        <figure class="project-fig">
+          <img src="assets/projects/FlowsOfEntropy/Flows-3.jpg" alt="Flows of Entropy — view 3" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Tunisia </figcaption>
+        </figure>
+
+        <!-- 3º tercio: IMAGEN -->
+        <figure class="project-fig">
+          <img src="assets/projects/FlowsOfEntropy/Flows-2.jpg" alt="Flows of Entropy — view 2" loading="lazy"
+            decoding="async">
+          <figcaption>2024 · Tunisia</figcaption>
+        </figure>
+
+        <div class="row-1-2">
+          <figure class="cell">
+            <img src="assets/projects/FlowsOfEntropy/Flows-4.jpg" alt="Flows of Entropy — object view">
+            <figcaption>2024 · Tunisia</figcaption>
+          </figure>
+          <figure class="cell">
+            <img src="assets/projects/FlowsOfEntropy/Flows-1.jpg" alt="Flows of Entropy — installation view">
+            <figcaption>2024 · Tunisia</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="project-inquiry">
+        For inquiries regarding this work, including acquisition, please feel free to get in touch via
+        <a href="mailto:rsotoacebal@gmail.com">email</a>.
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ====== Project Detail: WETMESH I ====== -->
+  <section class="project-detail" id="project-wetmesh-i" aria-label="Project: WETMESH I">
+    <div class="project-bar">
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+      <span class="project-title">WETMESH I</span>
+    </div>
+    <div class="project-subbar">
+      <span class="project-type">Light Kinetic Sculpture (2025)</span>
+      <span class="project-dimensions">300 × 300 × 300 cm</span>
+      <span class="project-materials">[WATER, TPU, SLA, INTERACTIVE TENSION SYSTEM]</span>
+    </div>
+    <div class="project-canvas">
+      <div class="project-layout">
+        <!-- Mitad | Mitad: Texto | Video -->
+        <div class="text intro-text">
+          <p>Wetmesh I is an interactive installation composed of a TPU membrane suspended from the ceiling by a system
+            of tension cables.
+            Inside, it contains 50 liters of water that stretch the material into an organic form.
+            The cables can be manipulated by those engaging with the work: each movement triggers vibrations in the
+            water, which in turn displace the membrane and produce variations in the projected light.
+          </p>
+          <p>The piece operates as a sensitive organism in which water, light, matter, and human bodies become
+            entangled.
+            The tension system not only transmits forces to the membrane but also establishes a non-verbal channel of
+            communication between people interacting simultaneously.
+            Oscillations propagate, transform, and return in a continuous exchange of shared vibrations.
+          </p>
+          <p>
+            Within the liquid body floats an inflatable object held by a geometric frame.
+            Its role is not to mediate but to introduce interference: it acts as a parasitic element that makes noise
+            and impurity visible, underscoring that all communication is permeated by fluctuations and instabilities.
+          </p>
+          <p>
+            The installation also acquires a “parasitic” dimension through its site.
+            Presented in the FORUM of Lüdenscheid—an obsolete building—the work attaches itself to the existing
+            architecture and activates it with new dynamics.
+            On both spatial and material scales, Wetmesh I approaches the parasite not as a negative presence but as an
+            agent that alters, interferes, and generates conditions for new modes of relation.
+          </p>
+        </div>
+
+        <figure class="intro-video">
+          <video muted autoplay loop playsinline controls preload="metadata"
+            src="assets/projects/WetmeshI/Wetmesh.mp4"></video>
+          <figcaption>2024 · Lüdenscheid</figcaption>
+        </figure>
+
+        <!-- Fila 2: wetmeshi-8 | wetmeshi-7 -->
+        <figure class="left">
+          <img src="assets/projects/WetmeshI/wetmeshi-8.jpg" alt="Wetmesh I — 8">
+          <figcaption>2024 · Lüdenscheid</figcaption>
+        </figure>
+        <figure class="right">
+          <img src="assets/projects/WetmeshI/wetmeshi-7.jpg" alt="Wetmesh I — 7">
+          <figcaption>2024 · Lüdenscheid</figcaption>
+        </figure>
+
+        <!-- Fila 3: wetmeshi-6 | wetmeshi-4 -->
+        <figure class="left">
+          <img src="assets/projects/WetmeshI/wetmeshi-6.jpg" alt="Wetmesh I — 6">
+          <figcaption>2024 · Lüdenscheid</figcaption>
+        </figure>
+        <figure class="right">
+          <img src="assets/projects/WetmeshI/wetmeshi-4.jpg" alt="Wetmesh I — 4">
+          <figcaption>2024 · Lüdenscheid</figcaption>
+        </figure>
+
+        <!-- Fila 4: sola a la izquierda -->
+        <figure class="left">
+          <img src="assets/projects/WetmeshI/wetmeshi-9.jpg" alt="Wetmesh I — 9">
+          <figcaption>2024 · Lüdenscheid</figcaption>
+        </figure>
+        <div class="spacer" aria-hidden="true"></div>
+      </div>
+      <div class="project-inquiry">
+        For inquiries regarding this work, including acquisition, please feel free to get in touch via
+        <a href="mailto:rsotoacebal@gmail.com">email</a>.
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== Project Detail: WETMESH II ====== -->
+  <section class="project-detail" id="project-wetmesh-ii" aria-label="Project: WETMESH II">
+    <div class="project-bar">
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+      <span class="project-title">WETMESH II</span>
+    </div>
+    <div class="project-subbar">
+      <span class="project-type">Sculpture (2025)</span>
+      <span class="project-dimensions">100 × 100 × 50 cm</span>
+      <span class="project-materials">[TPU, WATER, ALUMINUM, SLA, POLARIZER, ACRYLIC]</span>
+    </div>
+
+    <div class="project-canvas">
+      <div class="project-layout">
+
+        <!-- 1ª fila: texto (izq) | wetmeshi-4 (der) -->
+        <div class="intro-text left">
+          <p>Wetmesh II continues the investigation initiated with Wetmesh I, but in a condensed format that emphasizes
+            material processes over interaction. The work consists of a cubic aluminum frame from which a thermoplastic
+            polyurethane (TPU) membrane is suspended by a system of tension cables. The membrane contains approximately
+            12 liters of water, whose weight generates continuous deformations and stresses across its surface.</p>
+          <p>These forces, normally imperceptible, are revealed through a system of polarized filters placed above and
+            below the structure. Light passing through the filters allows the internal stresses of the water and the
+            membrane to be perceived, showing how subtle material variations are registered within the device.</p>
+          <p>Within the suspended system floats a biomorphic object made of latex and SLA resin. It drifts with the
+            liquid, registering its subtle fluctuations and making visible the internal movements of the membrane.</p>
+          <p>Unlike its predecessor, Wetmesh II does not rely on direct human interaction. Instead, it operates as an
+            autonomous ecosystem, a minimal device where water, matter, and light expose their own internal
+            negotiations. In this reduction of scale, the work condenses the project’s central concern: to approach
+            water not as a passive medium, but as an active substance that simultaneously records and produces
+            relations.</p>
+        </div>
+        <figure class="right">
+          <img src="assets/projects/WetmeshII/wetmeshi-4.jpg" alt="Wetmesh II — view 4">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+
+        <!-- 2ª fila: wetmeshi-9 | wetmeshi-13 -->
+        <figure class="left">
+          <img src="assets/projects/WetmeshII/wetmeshi-9.jpg" alt="Wetmesh II — view 9">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+        <figure class="right">
+          <img src="assets/projects/WetmeshII/wetmeshi-13.jpg" alt="Wetmesh II — view 13">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+
+        <!-- 3ª fila: wetmeshi-1 | wetmeshi-5 -->
+        <figure class="left">
+          <img src="assets/projects/WetmeshII/wetmeshi-1.jpg" alt="Wetmesh II — view 1">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+        <figure class="right">
+          <img src="assets/projects/WetmeshII/wetmeshi-5.jpg" alt="Wetmesh II — view 5">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+
+        <!-- 4ª fila: wetmeshi-10 | wetmeshi-12 -->
+        <figure class="left">
+          <img src="assets/projects/WetmeshII/wetmeshi-10.jpg" alt="Wetmesh II — view 10">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+        <figure class="right">
+          <img src="assets/projects/WetmeshII/wetmeshi-12.jpg" alt="Wetmesh II — view 12">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+
+        <!-- 5ª fila: sola a la izquierda (wetmeshi-2) -->
+        <figure class="left">
+          <img src="assets/projects/WetmeshII/wetmeshi-2.jpg" alt="Wetmesh II — view 2">
+          <figcaption>2025 · Brussels</figcaption>
+        </figure>
+        <div class="spacer" aria-hidden="true"></div>
+
+      </div>
+
+      <div class="project-inquiry">
+        For inquiries regarding this work, including acquisition, please feel free to get in touch via
+        <a href="mailto:rsotoacebal@gmail.com">email</a>.
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Project Detail: VIDEO ====== -->
+  <section class="project-detail onebar" id="project-video" aria-label="Project: VIDEO">
+    <div class="project-bar">
+      <span class="project-title">VIDEO</span>
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="project-canvas">
+      <!-- Contenido: video embebido, imágenes, texto -->
+      <figure class="media-block wetmesh">
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">WETMESH</span> <span class="year">2025</span>
+          </div>
+          <div class="line2">AI SHORT FILM</div>
+        </div>
+
+
+        <div class="video custom-play-wrap">
+          <video muted playsinline preload="metadata"
+            src="assets/projects/Video/Wetmesh Rafael Soto Acebal (Nyzuz).mp4"></video>
+          <button class="custom-play" aria-label="Play video">
+            <img src="assets/Icons/play.png" alt="">
+          </button>
+        </div>
+      </figure>
+
+
+
+
+
+      <!-- Bullbenny set -->
+      <section class="videos-group" aria-label="Bullbenny set">
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">BULLBENNY FASHION DROP</span> <span class="year">2022</span>
+          </div>
+          <div class="line2">THERMAL + ANALOG VIDEO </div>
+        </div>
+
+
+        <div class="videos-grid">
+          <div class="video custom-play-wrap">
+            <video muted playsinline preload="metadata" src="assets/projects/Video/B1.mp4"></video>
+            <button class="custom-play" aria-label="Play video">
+              <img src="assets/Icons/play.png" alt="">
+            </button>
+          </div>
+          <div class="video custom-play-wrap">
+            <video muted playsinline preload="metadata" src="assets/projects/Video/B2.mp4"></video>
+            <button class="custom-play" aria-label="Play video">
+              <img src="assets/Icons/play.png" alt="">
+            </button>
+          </div>
+          <div class="video custom-play-wrap">
+            <video muted playsinline preload="metadata" src="assets/projects/Video/B3.mp4"></video>
+            <button class="custom-play" aria-label="Play video">
+              <img src="assets/Icons/play.png" alt="">
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Fuzzy Sphere (imagen con barra arriba + link) -->
+      <figure class="media-block fuzzysphere">
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">
+              <a href="https://www.youtube.com/watch?v=kZFtMIkPZKs&list=RDkZFtMIkPZKs&start_radio=1" target="_blank"
+                rel="noopener">
+                FUZZY SPHERE ⬈
+              </a>
+            </span>
+            <span class="year">2022</span>
+          </div>
+          <div class="line2">ANALOG VIDEO SYNTH PROCESS</div>
+        </div>
+
+        <div class="image">
+          <img src="assets/projects/Video/Fuzzy Sphere.jpg" alt="Fuzzy Sphere — visualizer">
+        </div>
+
+
+      </figure>
+
+
+      <!-- Presion -->
+      <figure class="media-block presion">
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">
+              <a href="https://www.youtube.com/watch?v=9Zln83oHnQA" target="_blank" rel="noopener">
+                PRESIÓN — TAICHU — ÁLVARO DÍAZ ⬈
+              </a>
+            </span>
+            <span class="year">2023</span>
+          </div>
+          <div class="line2">THERMAL + ANALOG PROCESS</div>
+        </div>
+        <div class="image">
+          <img src="assets/projects/Video/Presion.jpg" alt="Presion — Taichu, Alvaro Díaz">
+        </div>
+
+        <figcaption class="credit-caption">Dir: Juli Grasss y Cruz Larrosa</figcaption>
+      </figure>
+
+
+
+
+
+    </div>
+  </section>
+
+  <!-- ====== Project Detail: VISUALIZATION ====== -->
+  <section class="project-detail onebar" id="project-visualization" aria-label="Project: VISUALIZATION">
+    <div class="project-bar">
+      <span class="project-title">VISUALIZATION</span>
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="project-canvas">
+
+      <div class="gallery"><!-- usa 'gallery fullbleed' si querés borde a borde -->
+
+        <figure class="gallery-fig">
+          <img src="assets/visualization/vis-01.jpg" alt="Visualization 01" loading="lazy" decoding="async">
+          <figcaption>2020 · Observation Deck on the Río de la Plata </figcaption>
+        </figure>
+
+        <figure class="gallery-fig">
+          <img src="assets/visualization/vis-02.jpg" alt="Visualization 02" loading="lazy" decoding="async">
+          <figcaption>2020 · Infradwelling</figcaption>
+        </figure>
+
+        <figure class="gallery-fig">
+          <img src="assets/visualization/vis-03.jpg" alt="Visualization 03" loading="lazy" decoding="async">
+          <figcaption>2021 · Courrier </figcaption>
+        </figure>
+
+        <figure class="gallery-fig">
+          <img src="assets/visualization/vis-04.jpg" alt="Visualization 04" loading="lazy" decoding="async">
+          <figcaption>2021 · Introspective </figcaption>
+        </figure>
+
+        <figure class="gallery-fig">
+          <img src="assets/visualization/vis-05.jpg" alt="Visualization 05" loading="lazy" decoding="async">
+          <figcaption>2021 · Consubstantial</figcaption>
+        </figure>
+
+        <figure class="gallery-fig">
+          <img src="assets/visualization/vis-06.jpg" alt="Visualization 06" loading="lazy" decoding="async">
+          <figcaption>2021 · Trace</figcaption>
+        </figure>
+
+        <figure class="gallery-fig">
+          <img src="assets/visualization/vis-07.jpg" alt="Visualization 07" loading="lazy" decoding="async">
+          <figcaption>2021 · </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== Project Detail: RESEARCH LAB ====== -->
+  <section class="project-detail onebar" id="project-research-lab" aria-label="Project: RESEARCH LAB">
+    <div class="project-bar">
+      <span class="project-title">RESEARCH LAB</span>
+      <button class="btn-close-project" data-close="project" aria-label="Close Project">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="5" y1="5" x2="19" y2="19"></line>
+          <line x1="19" y1="5" x2="5" y2="19"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="project-canvas">
+      <!-- ===== Research Lab — BLOQUE 1 (alineado por tercios) ===== -->
+      <section class="rl-block rl-firstrow">
+        <!-- Caption superior -->
+        <!-- Caption superior -->
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">TENSION CANVAS</span> <span class="year">2025</span>
+          </div>
+        </div>
+
+
+        <!-- Grilla 3 columnas: imagen en el 1º tercio; 2º y 3º vacíos para alinear -->
+        <div class="rl-grid-3">
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab.jpg" alt="Research Lab — Tension Canvas">
+            <figcaption class="rl-smallcap left">Bremen 2025</figcaption>
+          </figure>
+          <div class="cell spacer" aria-hidden="true"></div>
+          <div class="cell spacer" aria-hidden="true"></div>
+        </div>
+      </section>
+
+
+
+      <!-- ===== aire entre bloques (ya lo maneja CSS abajo) ===== -->
+
+
+      <!-- ===== Research Lab — BLOQUE 2 ===== -->
+      <section class="rl-block">
+        <!-- Caption superior (MAYÚSCULA + BOLD) -->
+        <!-- Caption superior -->
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">CREATIVE CODING AND TEXTILE EXPERIMENTS</span> <span class="year">2024</span>
+          </div>
+        </div>
+
+
+        <!-- Grilla 3 columnas -->
+        <div class="rl-grid-3">
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (1).jpg" alt="RL 1">
+          </figure>
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (2).jpg" alt="RL 2">
+          </figure>
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (3).jpg" alt="RL 3">
+          </figure>
+        </div>
+
+        <!-- Caption inferior -->
+        <p class="rl-smallcap">Bremen 2025</p>
+      </section>
+
+
+      <!-- ===== Research Lab — BLOQUE 3 ===== -->
+      <section class="rl-block">
+        <!-- Caption superior -->
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">CRYSTALLIZATION AND POLARIZATION EXPERIMENTS</span> <span class="year">2024</span>
+          </div>
+        </div>
+
+
+        <!-- 4 fotos en grilla de 3: la 4ª baja a la izquierda -->
+        <div class="rl-grid-3">
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (8).jpg" alt="RL 8">
+          </figure>
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (6).jpg" alt="RL 6">
+          </figure>
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (4).jpg" alt="RL 4">
+          </figure>
+        </div>
+      </section>
+
+
+      <!-- ===== Research Lab — BLOQUE 4 ===== -->
+      <section class="rl-block">
+        <!-- Caption superior -->
+        <div class="media-caption-bar stacked">
+          <div class="line1">
+            <span class="name">AQUATIC DEVICE — LIGHTWEIGHT RESEARCH</span> <span class="year">2025</span>
+          </div>
+        </div>
+
+        <div class="rl-grid-3">
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (10).jpg" alt="RL 10">
+          </figure>
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (11).jpg" alt="RL 11">
+          </figure>
+          <figure class="cell">
+            <img src="assets/projects/ResearchLab/Research-lab (12).jpg" alt="RL 12">
+          </figure>
+        </div>
+      </section>
+
+    </div>
+  </section>
+
+
+
+  <!-- Panel About -->
+  <section class="about-panel" id="about-panel" aria-label="About panel">
+    <div class="about-content">
+
+      <figure class="bio-portrait">
+        <img src="assets/Bio/bio-1.jpg" alt="Rafael Soto Acebal — portrait">
+      </figure>
+
+
+      <section id="bio" class="about-section">
+        <h2>BIO</h2>
+        <p>Rafael Soto Acebal (1998, Argentina) is an artist and architect who holds a degree in Architecture from the
+          Faculty of Architecture, Design and Urbanism (FADU–UBA). He is currently pursuing a Master of Arts in Digital
+          Media at the Hochschule für Künste (HfK) in Bremen, Germany. His multidisciplinary practice spans spatial
+          installations, kinetic sculpture, and media-based works, bridging digital and analog realms to create
+          speculative scenarios that explore the relationships between human / non-human, technology and matter.</p>
+      </section>
+
+      <section id="statement" class="about-section">
+        <h2>STATEMENT</h2>
+        <p>My practice explores invisible structures and hidden systems, approaching disorder and noise as potential
+          origins of new forms of organization. It investigates alternative modes of communication, entropy, and a
+          personal understanding of tension. These explorations materialize in kinetic machines, optical devices,
+          tensile structures, biomorphic sculptures, video works, floating devices, and crystallization processes. </p>
+        <p>I work across natural and synthetic matter, combining manual, digital, and computational processes. These
+          elements converge in changing configurations, where projects evolve through non-linear dialogues between
+          material agency, technique, and form. </p>
+        <p>I draw from Michel Serres and Timothy Morton, whose reflections on noise, systems, and interobjectivity
+          inform my speculative approach to inhabiting and relating with the non-human. Building on these ideas, I
+          conceive space as an open, flexible, and porous system, where coexistence and interference replace the logic
+          of fixed control. </p>
+        <p>These ideas take form in works such as Wetmesh, a suspended textile installation that holds water inside and
+          functions as a speculative communication system. Through tensile lines, participants interact with each other
+          and with the piece, generating a flow of tensions and liquid exchanges. A floating device interferes with that
+          balance, introducing a ‘parasitic noise’ that disrupts the system. The work proposes water as a soft
+          infrastructure for inhabiting and relating, where fluidity articulates alternative forms of connection. </p>
+        <p>My work does not aim to provide explanations, but to open spaces for encounter — where the viewer may take
+          something from the piece, and the piece itself is transformed by their presence. Today, my practice expands
+          these ideas through the development of devices that not only disrupt, but begin to act as autonomous entities
+          with their own agency. I am interested in further exploring speculative forms of inhabiting, where the
+          aquatic, the parasitic, and the non-human intertwine to propose alternative modes of relation and coexistence.
+        </p>
+      </section>
+
+      <section id="exhibitions" class="about-section">
+        <h2>EXHIBITIONS</h2>
+        <ul>
+          <li>2025 London, England, THE SIGNAL. THE NOISE.</li>
+          <li>2025 London, England, Summer Wars</li>
+          <li>2025 Brussels, Belgium, The Slime Knows</li>
+          <li>2025 Lüdenscheid, Germany, Lichtrouten</li>
+          <li>2025 Bremen, Germany, Hochschultage HFK</li>
+          <li>2024 Djerba, Tunisia, SEE DJERBA: Salt and Water</li>
+          <li>2024 Bremen, Germany, Studies of Change</li>
+          <li>2024 Bremen, Germany, Software and Soft Wear – Creative Coding and Textile Experiments</li>
+          <li>2024 Potsdam, Germany, PACE</li>
+          <li>2023 Buenos Aires, Argentina, ANIMA</li>
+          <li>2022 Buenos Aires, Argentina, LUPEAR FESTIVAL: Tecnópolis Lab of Electronic Arts</li>
+          <li>2022 Novosibirsk, Russia, CKA3 (Skaz) FESTIVAL</li>
+        </ul>
+      </section>
+
+      <section id="prizes" class="about-section">
+        <h2>PRIZES</h2>
+        <ul>
+          <li>2025 STIBET I Scholarship, HfK Bremen</li>
+          <li>2025 Hochschulpreis 2025, Kategorie Digitale Medien (Belobigung)</li>
+        </ul>
+      </section>
+
+      <section id="press" class="about-section">
+        <h2>PRESS</h2>
+        <ul>
+          <li>
+            <a href="https://pai32.com/2025/04/04/rafael-soto-acebal/" target="_blank" rel="noopener noreferrer"
+              class="press-link">
+              Artist of the Month — interview on PAI_32, April 2025
+            </a>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+  </section>
+
+  <!-- Grilla -->
+  <div class="stage">
+    <canvas id="grid"></canvas>
+    <img class="home-logo" src="assets/Icons/logo-home.png" alt="Logo">
+    <!-- <div class="hint">Wheel: zoom · Drag: pan · Double-click: center</div> -->
+  </div>
+
+
+  <script src="script.js"></script>
+
+
+
+  <div class="note">© RAFAEL SOTO ACEBAL 2025</div>
+
+  <div class="cursor" aria-hidden="true">
+    <div class="cursor-h"></div>
+    <div class="cursor-v"></div>
+  </div>
+</body>
+
+</html>
